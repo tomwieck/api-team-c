@@ -13,6 +13,7 @@ function Search() {
           <Form.Control
             type="search"
             id="search"
+            placeholder='Search...'
             value={filter}
             onChange={event => setFilter(event.target.value)}
           />
