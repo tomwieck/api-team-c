@@ -10,9 +10,25 @@ import {
     NavDropdown,
 } from "react-bootstrap";
 import { CitySearch } from "./components/city_search/city_search";
-import { CityTable } from "./components/city_table/city_table";
+import { CityTable, ICityTableProps } from "./components/city_table/city_table";
+import { ICityRowCardProps } from "./components/city_row_card/city_row_card";
 
 function App() {
+    const citiesData: ICityRowCardProps[] = [
+        {
+            cityName: "London",
+            weatherIcons: [{ imgUrl: "windy" }, { imgUrl: "sunny" }],
+        },
+        {
+            cityName: "London",
+            weatherIcons: [{ imgUrl: "windy" }, { imgUrl: "sunny" }],
+        },
+        {
+            cityName: "London",
+            weatherIcons: [{ imgUrl: "windy" }, { imgUrl: "sunny" }],
+        },
+    ];
+
     return (
         <div className="App">
             <Navbar bg="light" expand="lg">
@@ -51,7 +67,7 @@ function App() {
                     <CitySearch />
                 </Row>
                 <Row>
-                    <CityTable />
+                    <CityTable cities={citiesData} />
                 </Row>
             </Container>
         </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, InputGroup } from "react-bootstrap";
+import { Form, InputGroup, Image } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
@@ -10,7 +10,7 @@ export interface IWeatherIconProp {
 export const WeatherIcon: React.FC<IWeatherIconProp> = ({ imgUrl }) => {
     return (
         <>
-            <img src={imgUrl} />
+            <Image src={imgUrl} />
         </>
     );
 };

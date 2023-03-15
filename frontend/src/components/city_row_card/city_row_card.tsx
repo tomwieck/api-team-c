@@ -3,12 +3,12 @@ import { Row } from "react-bootstrap";
 import { IWeatherIconProp } from "../weather_icon/weather_icon";
 import { WeatherIconRow } from "../weather_icon_row/weather_icon_row";
 
-export interface ICityRowProps {
+export interface ICityRowCardProps {
     cityName: string;
     weatherIcons: IWeatherIconProp[];
 }
 
-export const CityRow: React.FC<ICityRowProps> = ({
+export const CityRowCard: React.FC<ICityRowCardProps> = ({
     cityName,
     weatherIcons,
 }) => {
