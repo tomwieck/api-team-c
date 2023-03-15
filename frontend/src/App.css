@@ -1,9 +1,15 @@
 .App {
   text-align: center;
 }
-
+.card-footer {
+  height: 65px;
+}
 .forecast-card {
   width: 200px;
+}
+
+.forecast-card--active {
+  width: 300px;
 }
 
 .forecast-card__content {
