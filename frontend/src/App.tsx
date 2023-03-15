@@ -10,6 +10,7 @@ import {
     NavDropdown,
 } from "react-bootstrap";
 import { CitySearch } from "./components/city_search/city_search";
+import { CityTable } from "./components/city_table/city_table";
 
 function App() {
     return (
@@ -48,6 +49,9 @@ function App() {
             <Container>
                 <Row>
                     <CitySearch />
+                </Row>
+                <Row>
+                    <CityTable />
                 </Row>
             </Container>
         </div>
