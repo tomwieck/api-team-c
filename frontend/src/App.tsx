@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import { Button } from "react-bootstrap";
 import NavBar from "./components/NavBar";
+import ForecastCity from "./components/forecast/ForecastCity";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
         <input type="text"></input>
         <Button>Find weather</Button>
       </div>
-      <div>Weather for today, for tomorrow, day after tomorrow ...</div>
+      <ForecastCity />
     </div>
   );
 }
