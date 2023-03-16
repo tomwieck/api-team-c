@@ -22,11 +22,26 @@ export interface IForecast {
     weather_description: string;
 }
 
+export interface IIsOpen {
+    1: boolean;
+    2: boolean;
+    3: boolean;
+    4: boolean;
+    5: boolean;
+}
+
 export const CityTable: React.FC = () => {
+    const [open, setOpen]: IIsOpen = {
+        1: false,
+        2: false,
+        3: false,
+        4: false,
+        5: false,
+    };
     return (
         <div className="city-table col">
             {cities.map((city, index) => (
-                <CityRow key={index} {...city} />
+                <CityRow key={index} {...city} onClick={setOpen(!open)} />
             ))}
         </div>
     );
