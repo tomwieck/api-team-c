@@ -10,10 +10,10 @@ export const WeatherIconRow: React.FC<IWeatherIconRowProps> = ({
     weatherIcons,
 }) => {
     return (
-        <Row>
-            {weatherIcons.map((i) => (
-                <WeatherIcon {...i} />
+        <>
+            {weatherIcons.map((i, index) => (
+                <WeatherIcon key={index} {...i} />
             ))}
-        </Row>
+        </>
     );
 };

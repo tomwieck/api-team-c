@@ -10,7 +10,12 @@ export interface IWeatherIconProp {
 export const WeatherIcon: React.FC<IWeatherIconProp> = ({ imgUrl }) => {
     return (
         <>
-            <Image src={imgUrl} />
+            <Image
+                className="weatherIcon"
+                src={imgUrl}
+                style={{ height: 100, width: 100, display: "inline-block" }}
+                alt={imgUrl}
+            />
         </>
     );
 };

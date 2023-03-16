@@ -13,10 +13,10 @@ export const CityRow: React.FC<ICityRowProps> = ({
     weatherIcons,
 }) => {
     return (
-        <Row>
-            <p>{cityName}</p>
+        <Row className="cityRow">
+            <p className="cityRow__cityName">{cityName}</p>
 
-            <WeatherIconRow {...weatherIcons} />
+            <WeatherIconRow weatherIcons={weatherIcons} />
         </Row>
     );
 };

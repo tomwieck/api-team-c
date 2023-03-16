@@ -11,20 +11,20 @@ import {
 } from "react-bootstrap";
 import { CitySearch } from "./components/city_search/city_search";
 import { CityTable, ICityTableProps } from "./components/city_table/city_table";
-import { ICityRowCardProps } from "./components/city_row_card/city_row_card";
+import { ICityRowProps } from "./components/city_row/city_row";
 
 function App() {
-    const citiesData: ICityRowCardProps[] = [
+    const cities: ICityRowProps[] = [
         {
             cityName: "London",
             weatherIcons: [{ imgUrl: "windy" }, { imgUrl: "sunny" }],
         },
         {
-            cityName: "London",
+            cityName: "New York",
             weatherIcons: [{ imgUrl: "windy" }, { imgUrl: "sunny" }],
         },
         {
-            cityName: "London",
+            cityName: "Paris",
             weatherIcons: [{ imgUrl: "windy" }, { imgUrl: "sunny" }],
         },
     ];
@@ -67,7 +67,7 @@ function App() {
                     <CitySearch />
                 </Row>
                 <Row>
-                    <CityTable cities={citiesData} />
+                    <CityTable cities={cities} />
                 </Row>
             </Container>
         </div>

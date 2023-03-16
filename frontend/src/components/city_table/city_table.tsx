@@ -4,22 +4,16 @@ import { Form, InputGroup } from "react-bootstrap";
 import { Counter } from "../counter/counter";
 import { CityRow } from "../city_row/city_row";
 import { ICityRowProps } from "../city_row/city_row";
-import { ICityRowCardProps } from "../city_row_card/city_row_card";
 
 export interface ICityTableProps {
-    cities: ICityRowCardProps[];
+    cities: ICityRowProps[];
 }
-export const CityTable: React.FC<ICityTableProps> = (cities) => {
-    // const cityRowData: ICityRowProps = {
-    //     cities,
-    // };
+export const CityTable: React.FC<ICityTableProps> = ({ cities }) => {
     return (
         <>
-            City Table
-            {cities.map(
-                (city) => city
-                // <CityRow {...city} />
-            )}
+            {cities.map((city, index) => (
+                <CityRow key={index} {...city} />
+            ))}
         </>
     );
 };
