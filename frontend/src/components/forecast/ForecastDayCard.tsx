@@ -1,5 +1,9 @@
 import Card from "react-bootstrap/Card";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { faWind } from "@fortawesome/free-solid-svg-icons";
+
 type ForecastDayCardType = {
   isActive: boolean;
   toggleActive: () => void;
@@ -46,7 +50,9 @@ const ForecastDayCard: React.FC<ForecastDayCardType> = ({
           </div>
         </Card.Body>
         <Card.Footer>
-          humidity {forecast.humidity} | wind_speed {forecast.wind_speed}
+          humidity {forecast.humidity} |{" "}
+          <FontAwesomeIcon name="wind" icon={faWind} key="icon" />{" "}
+          {forecast.wind_speed}
         </Card.Footer>
       </Card>
     </>
