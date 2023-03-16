@@ -1,56 +1,58 @@
 import Card from "react-bootstrap/Card";
 
 type ForecastDayCardType = {
-  isActive: boolean;
-  toggleActive: () => void;
+    isActive: boolean;
+    toggleActive: () => void;
 };
 
 const ForecastDayCard: React.FC<ForecastDayCardType> = ({
-  isActive,
-  toggleActive,
+    isActive,
+    toggleActive,
 }) => {
-  const forecast = {
-    city: "London",
-    date_str: "Today", // 15th, 16th...
-    icon_url: `https://openweathermap.org/img/wn/10d@2x.png`,
-    temp_day_min: "9°",
-    temp_day_max: "12°",
-    wind_speed: "4m/s",
-    humidity: 51,
-    weather_description: "broken clouds", // could be used for selected forecast card
-  };
+    const forecast = {
+        date_str: "Today", // 15th, 16th...
+        icon_url: "10d",
+        temp_day_min: "9°",
+        temp_day_max: "12°",
+        wind_speed: "4m/s",
+        humidity: 51,
+        weather_description: "broken clouds", // could be used for selected forecast card
+    };
 
-  return (
-    <>
-      <Card
-        className={
-          isActive ? "forecast-card forecast-card--active" : "forecast-card"
-        }
-        onClick={e => toggleActive()}
-      >
-        <Card.Body>
-          <p>{forecast.date_str}</p>
-          <div className="forecast-card__content">
-            <div>
-              <img src={forecast.icon_url} alt="" />
-            </div>
-            <div className="forecast-card__temperatures">
-              <div>{forecast.temp_day_min}</div>
-              <div>{forecast.temp_day_max}</div>
-            </div>
-            {isActive && (
-              <div className="forecast-card__description">
-                {forecast.weather_description}
-              </div>
-            )}
-          </div>
-        </Card.Body>
-        <Card.Footer>
-          humidity {forecast.humidity} | wind_speed {forecast.wind_speed}
-        </Card.Footer>
-      </Card>
-    </>
-  );
+    return (
+        <>
+            <Card
+                className={
+                    isActive
+                        ? "forecast-card forecast-card--active"
+                        : "forecast-card"
+                }
+                onClick={(e) => toggleActive()}
+            >
+                <Card.Body>
+                    <p>{forecast.date_str}</p>
+                    <div className="forecast-card__content">
+                        <div>
+                            <img src={forecast.icon_url} alt="" />
+                        </div>
+                        <div className="forecast-card__temperatures">
+                            <div>{forecast.temp_day_min}</div>
+                            <div>{forecast.temp_day_max}</div>
+                        </div>
+                        {isActive && (
+                            <div className="forecast-card__description">
+                                {forecast.weather_description}
+                            </div>
+                        )}
+                    </div>
+                </Card.Body>
+                <Card.Footer>
+                    humidity {forecast.humidity} | wind_speed{" "}
+                    {forecast.wind_speed}
+                </Card.Footer>
+            </Card>
+        </>
+    );
 };
 
 export default ForecastDayCard;
