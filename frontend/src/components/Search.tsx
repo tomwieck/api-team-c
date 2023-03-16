@@ -1,7 +1,10 @@
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 
-import initialData from '../data/initialData';
+// import initialData from '../data/initialData';
+
+import cities from '../data/cities';
+
 
 
 function Search() {
@@ -21,7 +24,7 @@ function Search() {
         <div>
           <ul>
             {
-              initialData.filter(f => f.city.includes(filter) || filter === '')
+              cities.filter(f => f.name.includes(filter) || filter === '')
               .map(f => 
                 <li key={JSON.stringify(f)}>
                   {JSON.stringify(f)}
