@@ -49,7 +49,7 @@ const ForecastDayCard: React.FC<ForecastDayCardType> = ({
             )}
           </div>
         </Card.Body>
-        <Card.Footer>
+        <Card.Footer className="forecast-card__footer">
           humidity {forecast.humidity} |{" "}
           <FontAwesomeIcon name="wind" icon={faWind} key="icon" />{" "}
           {forecast.wind_speed}

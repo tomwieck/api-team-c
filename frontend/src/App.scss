@@ -1,6 +1,15 @@
 @import "~bootstrap/scss/bootstrap";
 @import "./scss/_city_table";
+@import "./scss/forecast_day_card";
 
 .container {
   max-width: 900px;
+}
+
+.mt-40 {
+  margin-top: 40px;
+}
+
+.ml-40 {
+  margin-left: 40px;
 }
