@@ -32,8 +32,8 @@ export const getCityFiveDayForecast = async (req: Request, res: Response) => {
         console.log(apiDaily, apiDaily.weather);
 
         interface OneDaysData {
-          main: String;
-          detail: String;
+          weather_title: String;
+          weather_description: String;
           icon_id: String;
           icon_url: String;
           sunrise_time: number;
@@ -42,9 +42,10 @@ export const getCityFiveDayForecast = async (req: Request, res: Response) => {
           uv_index: number;
           wind_direction: String;
           wind_speed: number;
-          temp_day: number;
-          temp_min: number;
-          temp_max: number;
+          temp_day_noon: number;
+          temp_day_min: number;
+          temp_day_max: number;
+          humidity: number;
           percentprec: number;
           expected_snow: number;
           expected_rain: number;
@@ -67,27 +68,28 @@ export const getCityFiveDayForecast = async (req: Request, res: Response) => {
           days.push( {
             icon_id: apiDaily[i].weather[0].icon as String,
             icon_url: `http://openweather/icons/${apiDaily[i].weather[0].icon}.jpg`,
-            main: apiDaily[i].weather[0].main,
-            detail: apiDaily[i].weather[0].description,
+            weather_title: apiDaily[i].weather[0].main,
+            weather_description: apiDaily[i].weather[0].description,
             expected_rain: apiDaily[i].rain,
             expected_snow: apiDaily[i].snow,
             uv_index: apiDaily[i].uvi,
             wind_direction: apiDaily[i].wind_deg,
             wind_speed: apiDaily[i].wind_speed,
-            temp_day: apiDaily[i].temp.day,
-            temp_min: apiDaily[i].temp.min,
-            temp_max: apiDaily[i].temp.max,
+            temp_day_noon: apiDaily[i].temp.day,
+            temp_day_min: apiDaily[i].temp.min,
+            temp_day_max: apiDaily[i].temp.max,
             percentprec: apiDaily[i].pop,
             cloud_cover: apiDaily[i].clouds,
             sunrise_time: apiDaily[i].sunrise,
             sunset_time: apiDaily[i].sunset,
-            hours_daylight: apiDaily[i].sunset - apiDaily.sunrise
+            hours_daylight: apiDaily[i].sunset - apiDaily.sunrise,
+            humidity: apiDaily[i].humidity
           });
         }
 
         const data:FiveDaysData = {
           cityName: city.city,
-          date: apiData.dt,
+          date: apiData.current.dt,
           daily: days
         };
 
