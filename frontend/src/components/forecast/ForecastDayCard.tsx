@@ -15,13 +15,15 @@ const ForecastDayCard: React.FC<ForecastDayCardType> = ({
 }) => {
   const forecast = {
     date_str: "Today", // 15th, 16th...
-    icon_url: "10d",
+    icon_id: "10d",
     temp_day_min: "9°",
     temp_day_max: "12°",
     wind_speed: "4m/s",
     humidity: 51,
     weather_description: "broken clouds", // could be used for selected forecast card
   };
+
+  const iconClassName = `city-row__weather-icon--${forecast.icon_id}`;
 
   return (
     <>
@@ -34,12 +36,14 @@ const ForecastDayCard: React.FC<ForecastDayCardType> = ({
         <Card.Body>
           <p>{forecast.date_str}</p>
           <div className="forecast-card__content">
-            <div>
-              <img src={forecast.icon_url} alt="" />
+            <div className="forecast-card__icon-wrapper">
+              <i className={iconClassName}></i>
             </div>
             <div className="forecast-card__temperatures">
+              <div className="forecast-card__max-temperature">
+                {forecast.temp_day_max}
+              </div>
               <div>{forecast.temp_day_min}</div>
-              <div>{forecast.temp_day_max}</div>
             </div>
             {isActive && (
               <div className="forecast-card__description">
@@ -48,7 +52,8 @@ const ForecastDayCard: React.FC<ForecastDayCardType> = ({
             )}
           </div>
         </Card.Body>
-        <Card.Footer>
+        <Card.Footer className="forecast-card__footer">
+          {/* TODO icon for humidity */}
           humidity {forecast.humidity} |{" "}
           <FontAwesomeIcon name="wind" icon={faWind} key="icon" />{" "}
           {forecast.wind_speed}

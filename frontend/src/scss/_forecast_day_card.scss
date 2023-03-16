@@ -4,31 +4,41 @@
 
 .forecast-card {
   width: 200px;
-}
 
-.forecast-card--active {
-  width: 300px;
-}
+  &--active {
+    width: 300px;
+  }
 
-.forecast-card__content {
-  display: flex;
-}
+  &__content {
+    display: flex;
+  }
 
-.forecast-card__temperatures {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+  &__icon-wrapper {
+    margin-top: -20px;
+    margin-left: -20px;
+  }
 
-.forecast-card__description {
-  margin-left: 20px;
-  padding-left: 20px;
-  border-left: 1px solid #dbdde6;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  &__temperatures {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10px;
+  }
 
-.forecast-card__footer {
-  height: 65px;
+  &__max-temperature {
+    font-weight: bold;
+  }
+
+  &__description {
+    margin-left: 20px;
+    padding-left: 20px;
+    border-left: 1px solid #dbdde6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__footer {
+    height: 65px;
+  }
 }
