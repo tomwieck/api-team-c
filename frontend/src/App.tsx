@@ -1,6 +1,8 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
+import NavBar from "./components/NavBar";
+import ForecastCity from "./components/forecast/ForecastCity";
 
 import {
     Button,
@@ -108,6 +110,7 @@ function App() {
                 <Row>
                     <CityTable cities={cities} />
                 </Row>
+                <ForecastCity />
             </Container>
         </div>
     );
