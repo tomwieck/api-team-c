@@ -17,59 +17,6 @@ import { CityTable, ICityTableProps } from "./components/city_table/city_table";
 import { ICityRowProps } from "./components/city_row/city_row";
 
 function App() {
-    const cities: ICityRowProps[] = [
-        {
-            cityName: "London",
-            weatherIcons: [
-                { imgUrl: "01d" },
-                { imgUrl: "02d" },
-                { imgUrl: "03d" },
-                { imgUrl: "04d" },
-                { imgUrl: "01d" },
-            ],
-        },
-        {
-            cityName: "New York",
-            weatherIcons: [
-                { imgUrl: "03d" },
-                { imgUrl: "04d" },
-                { imgUrl: "03d" },
-                { imgUrl: "02d" },
-                { imgUrl: "04d" },
-            ],
-        },
-        {
-            cityName: "Paris",
-            weatherIcons: [
-                { imgUrl: "09d" },
-                { imgUrl: "10d" },
-                { imgUrl: "03d" },
-                { imgUrl: "01d" },
-                { imgUrl: "10d" },
-            ],
-        },
-        {
-            cityName: "Sydney",
-            weatherIcons: [
-                { imgUrl: "11d" },
-                { imgUrl: "13d" },
-                { imgUrl: "03d" },
-                { imgUrl: "10d" },
-                { imgUrl: "13d" },
-            ],
-        },
-        {
-            cityName: "Moscow",
-            weatherIcons: [
-                { imgUrl: "50d" },
-                { imgUrl: "13d" },
-                { imgUrl: "03d" },
-                { imgUrl: "11d" },
-                { imgUrl: "13d" },
-            ],
-        },
-    ];
-
     return (
         <div className="App">
             <Navbar bg="light" expand="lg">
@@ -108,7 +55,7 @@ function App() {
                     <CitySearch />
                 </Row>
                 <Row>
-                    <CityTable cities={cities} />
+                    <CityTable />
                 </Row>
                 <ForecastCity />
             </Container>
