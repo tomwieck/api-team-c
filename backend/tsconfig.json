@@ -1,29 +1,33 @@
 {
-    "include": ["./src/**/*", "src/app.ts"],
-    "exclude": ["node_modules"],
+    "include": [
+        "./src/**/*",
+        "src/app.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ],
     "compilerOptions": {
-    "strict": true /* Enable all strict type-checking
+        "strict": true /* Enable all strict type-checking
     options. */,
-    "target": "ES2022",
-    "module": "ES2015",
-    "moduleResolution": "node",
-    "rootDir": "./src",
-    "outDir": "./build",
-    "esModuleInterop": true /* Emit additional JavaScript
+        "target": "ES2022",
+        "module": "ES2015",
+        "moduleResolution": "node",
+        "rootDir": "./src",
+        "outDir": "./build",
+        "esModuleInterop": true /* Emit additional JavaScript
     to ease support for importing CommonJS modules. This enables
     'allowSyntheticDefaultImports' for type compatibility. */,
-    "forceConsistentCasingInFileNames": true /* Ensure
+        "forceConsistentCasingInFileNames": true /* Ensure
     that casing is correct in imports. */,
-    "skipLibCheck": true /* Skip type checking all .d.ts
+        "skipLibCheck": true /* Skip type checking all .d.ts
     files. */
     },
     "ts-node": {
-    /* these settings ensure compatibility with ES6
+        /* these settings ensure compatibility with ES6
     import/export */
-    "esm": true,
-    "compilerOptions": {
-    "module": "CommonJS"
+        "esm": true,
+        "compilerOptions": {
+            "module": "CommonJS"
+        }
     }
-    }
-    }
-    
+}

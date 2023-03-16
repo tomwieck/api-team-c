@@ -12,11 +12,8 @@ router.use((req, res, next) => {
 
 router.get('/', (req, res) => res.send('Welcome to weather API'));
 
-router.get('/cities', (req, res) => weatherController.getCities);
+router.get('/cities', weatherController.getCities);
 
 router.get('/city/1', weatherController.getCityDailyForecast);
 
-router.get('/city/5', (req, res) => weatherController.getCityFiveDayForecast);
-
-
-
+router.get('/city/5', weatherController.getCityFiveDayForecast);
