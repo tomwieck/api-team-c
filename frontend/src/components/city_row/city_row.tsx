@@ -8,6 +8,7 @@ export interface ICityRowProps {
     cityName: string;
     weatherIcons: IWeatherIconProp[];
     forecasts: IForecast[];
+    onClick: () => void;
 }
 
 export const CityRow: React.FC<ICityRowProps> = ({
