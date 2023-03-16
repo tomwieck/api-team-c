@@ -18,16 +18,18 @@ export const getCityFiveDayForecast = async (req: Request, res: Response) => {
       res.status(404).json("City ID required.");
     } else {
 
-      const city = cities.find(city => city.id === req.query.cityId);
+      const city = cities.find(city => city.id === req.query.id);
 
       if (!city) {
         res.status(404).json("Unknown city.");
       } else {
         const response = await fetch(
-          `https://api.openweathermap.org/data/3.0/onecall?lat=${city.lat}&lon=${city.lon}&exclude=hourly&appid=${process.env.WEATHER_API_KEY}`
+          `https://api.openweathermap.org/data/3.0/onecall?lat=${city.lat}&lon=${city.lon}&exclude=hourly&appid=${process.env.WEATHER_API_KEY}&units=metric`
         );
-        const apidata = await response.json();
-        const apiDaily = apidata.daily;
+        const apiData = await response.json();
+        const apiDaily = apiData.daily;
+
+        console.log(apiDaily, apiDaily.weather);
 
         interface OneDaysData {
           main: String;
@@ -46,40 +48,47 @@ export const getCityFiveDayForecast = async (req: Request, res: Response) => {
           percentprec: number;
           expected_snow: number;
           expected_rain: number;
-          air_quality: number;
           cloud_cover: number;
         }
 
         interface FiveDaysData {
           cityName: String;
           date: Number;
-          percentprec: number;
-          total_rain: number;
-          total_snow: number;
-          uv_index: Number;
+          // percentprec: number;
+          // total_rain: number;
+          // total_snow: number;
+          // uv_index: Number;
           daily: OneDaysData[];
         }
 
-        let data: FiveDaysData;
+        let days: OneDaysData[] = [];
 
         for (let i = 0; i < 5; i++) {
-          const day: OneDaysData = {
-            icon_id: apiDaily[i].weather.icon as String,
-            icon_url: `http://openweather/icons/${apiDaily[i].weather.icon}.jpg`,
-            main: apiDaily.weather.main,
-            rainexpected_rain: apiDaily.rain,
-            snowMM: apiDaily.snow,
-            uv_index: apiDaily.uvi,
-            detail: apiDaily.weather.description,
-          };
-          data.daily.push(day);
+          days.push( {
+            icon_id: apiDaily[i].weather[0].icon as String,
+            icon_url: `http://openweather/icons/${apiDaily[i].weather[0].icon}.jpg`,
+            main: apiDaily[i].weather[0].main,
+            detail: apiDaily[i].weather[0].description,
+            expected_rain: apiDaily[i].rain,
+            expected_snow: apiDaily[i].snow,
+            uv_index: apiDaily[i].uvi,
+            wind_direction: apiDaily[i].wind_deg,
+            wind_speed: apiDaily[i].wind_speed,
+            temp_day: apiDaily[i].temp.day,
+            temp_min: apiDaily[i].temp.min,
+            temp_max: apiDaily[i].temp.max,
+            percentprec: apiDaily[i].pop,
+            cloud_cover: apiDaily[i].clouds,
+            sunrise_time: apiDaily[i].sunrise,
+            sunset_time: apiDaily[i].sunset,
+            hours_daylight: apiDaily[i].sunset - apiDaily.sunrise
+          });
         }
 
-        data = {
+        const data:FiveDaysData = {
           cityName: city.city,
-          date: apidata.json.dt,
-          percentprec: apiDaily.pop,
-          daily: []
+          date: apiData.dt,
+          daily: days
         };
 
         res.status(200).json(data);
@@ -100,13 +109,13 @@ export const getCityDailyForecast = async (req: Request, res: Response) => {
       res.status(404).json("City ID required.");
     } else {
       console.log(req.query);
-      const city = cities.find(city => city.id === req.query.cityId);
+      const city = cities.find(city => city.id === req.query.id);
 
       if (!city) {
         res.status(404).json("Unknown city.");
       } else {
         const response = await fetch(
-          `https://api.openweathermap.org/data/3.0/onecall?lat=${city.lat}&lon=${city.lon}&exclude=daily&appid=${process.env.WEATHER_API_KEY}`
+          `https://api.openweathermap.org/data/3.0/onecall?lat=${city.lat}&lon=${city.lon}&exclude=daily&appid=${process.env.WEATHER_API_KEY}&units=metric`
         );
         const data = await response.json();
         res.status(200).json(data);
