@@ -1,5 +1,6 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.scss";
 
 import {
     Button,
@@ -17,15 +18,53 @@ function App() {
     const cities: ICityRowProps[] = [
         {
             cityName: "London",
-            weatherIcons: [{ imgUrl: "windy" }, { imgUrl: "sunny" }],
+            weatherIcons: [
+                { imgUrl: "01d" },
+                { imgUrl: "02d" },
+                { imgUrl: "03d" },
+                { imgUrl: "04d" },
+                { imgUrl: "01d" },
+            ],
         },
         {
             cityName: "New York",
-            weatherIcons: [{ imgUrl: "windy" }, { imgUrl: "sunny" }],
+            weatherIcons: [
+                { imgUrl: "03d" },
+                { imgUrl: "04d" },
+                { imgUrl: "03d" },
+                { imgUrl: "02d" },
+                { imgUrl: "04d" },
+            ],
         },
         {
             cityName: "Paris",
-            weatherIcons: [{ imgUrl: "windy" }, { imgUrl: "sunny" }],
+            weatherIcons: [
+                { imgUrl: "09d" },
+                { imgUrl: "10d" },
+                { imgUrl: "03d" },
+                { imgUrl: "01d" },
+                { imgUrl: "10d" },
+            ],
+        },
+        {
+            cityName: "Sydney",
+            weatherIcons: [
+                { imgUrl: "11d" },
+                { imgUrl: "13d" },
+                { imgUrl: "03d" },
+                { imgUrl: "10d" },
+                { imgUrl: "13d" },
+            ],
+        },
+        {
+            cityName: "Moscow",
+            weatherIcons: [
+                { imgUrl: "50d" },
+                { imgUrl: "13d" },
+                { imgUrl: "03d" },
+                { imgUrl: "11d" },
+                { imgUrl: "13d" },
+            ],
         },
     ];
 

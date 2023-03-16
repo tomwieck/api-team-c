@@ -8,13 +8,13 @@ export interface IWeatherIconProp {
 }
 
 export const WeatherIcon: React.FC<IWeatherIconProp> = ({ imgUrl }) => {
+    const className = "city-row__weather-icon--" + imgUrl;
     return (
         <>
-            <Image
-                className="weatherIcon"
-                src={imgUrl}
-                style={{ height: 100, width: 100, display: "inline-block" }}
-                alt={imgUrl}
+            <p
+                className={className}
+                // src={imgUrl}
+                // alt={imgUrl}
             />
         </>
     );

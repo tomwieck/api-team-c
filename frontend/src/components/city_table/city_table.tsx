@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, InputGroup } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 
 import { Counter } from "../counter/counter";
 import { CityRow } from "../city_row/city_row";
@@ -10,10 +10,10 @@ export interface ICityTableProps {
 }
 export const CityTable: React.FC<ICityTableProps> = ({ cities }) => {
     return (
-        <>
+        <div className="city-table col">
             {cities.map((city, index) => (
                 <CityRow key={index} {...city} />
             ))}
-        </>
+        </div>
     );
 };
