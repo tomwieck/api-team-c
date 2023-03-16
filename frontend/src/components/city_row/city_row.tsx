@@ -2,15 +2,18 @@ import React from "react";
 import { Row, Col, Button } from "react-bootstrap";
 import { IWeatherIconProp } from "../weather_icon/weather_icon";
 import { WeatherIconRow } from "../weather_icon_row/weather_icon_row";
+import { IForecast } from "../city_table/city_table";
 
 export interface ICityRowProps {
     cityName: string;
     weatherIcons: IWeatherIconProp[];
+    forecasts: IForecast[];
 }
 
 export const CityRow: React.FC<ICityRowProps> = ({
     cityName,
     weatherIcons,
+    forecasts,
 }) => {
     return (
         <Row className="city-row">

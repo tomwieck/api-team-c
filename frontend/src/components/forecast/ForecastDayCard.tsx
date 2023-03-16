@@ -14,9 +14,8 @@ const ForecastDayCard: React.FC<ForecastDayCardType> = ({
   toggleActive,
 }) => {
   const forecast = {
-    city: "London",
     date_str: "Today", // 15th, 16th...
-    icon_url: `https://openweathermap.org/img/wn/10d@2x.png`,
+    icon_url: "10d",
     temp_day_min: "9°",
     temp_day_max: "12°",
     wind_speed: "4m/s",
@@ -49,7 +48,7 @@ const ForecastDayCard: React.FC<ForecastDayCardType> = ({
             )}
           </div>
         </Card.Body>
-        <Card.Footer className="forecast-card__footer">
+        <Card.Footer>
           humidity {forecast.humidity} |{" "}
           <FontAwesomeIcon name="wind" icon={faWind} key="icon" />{" "}
           {forecast.wind_speed}
