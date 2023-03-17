@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 
 import { CityRow } from "../city_row/city_row";
-import { ICityRowProps } from "../city_row/city_row";
 import CityForecast from "../city_forecast/city_forecast";
-
+import { IWeatherIconProp } from "../weather_icon/weather_icon";
+import { IForecast } from "../city_forecast/forecast_day_card";
 import { cities } from "../../dummy/dummy_data";
 
+export interface ICityProps {
+    cityName: string;
+    weatherIcons: IWeatherIconProp[];
+    forecasts: IForecast[];
+    toggleRow(): void;
+}
 export interface ICityTableProps {
-    cities: ICityRowProps[];
+    cities: ICityProps[];
 }
 
 export interface IIsOpen {
@@ -36,7 +42,11 @@ export const CityTable: React.FC = () => {
                         {...city}
                         toggleRow={() => toggleRow(index)}
                     />
-                    <CityForecast />
+                    <CityForecast
+                        key={index}
+                        {...city}
+                        toggleRow={() => toggleRow(index)}
+                    />
                 </>
             ))}
         </div>

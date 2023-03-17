@@ -1,9 +1,9 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { CityRow, ICityRowProps } from "./city_row";
-
+import { CityRow } from "./city_row";
+import { ICityProps } from "../city_table/city_table";
 test("renders city name ", () => {
-    // const cityRowData: ICityRowProps = {
+    // const cityRowData: ICityProps = {
     //   cityName: "London",
     //   weatherIcons: [{ imgUrl: "windy" }, { imgUrl: "sunny" }],
     //   forecasts: [
