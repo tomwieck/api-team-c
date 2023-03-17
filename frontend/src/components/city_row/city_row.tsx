@@ -7,17 +7,24 @@ import { IForecast } from "../city_table/city_table";
 export interface ICityRowProps {
     cityName: string;
     weatherIcons: IWeatherIconProp[];
+    id: number;
     forecasts: IForecast[];
-    onClick: () => void;
+    toggleRow(e: React.MouseEvent): void;
 }
 
 export const CityRow: React.FC<ICityRowProps> = ({
     cityName,
     weatherIcons,
     forecasts,
+    toggleRow,
 }) => {
     return (
-        <Row className="city-row">
+        <Row
+            className="city-row"
+            onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
+                toggleRow(e)
+            }
+        >
             <Col className="col-3">
                 <h3 className="city-row__city-name">{cityName}</h3>
             </Col>

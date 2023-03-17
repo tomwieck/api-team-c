@@ -9,6 +9,7 @@ export const cities: ICityRowProps[] = [
             { imgUrl: "04d" },
             { imgUrl: "01d" },
         ],
+        id: 1,
         forecasts: [
             {
                 date_str: "Today", // 15th, 16th...
@@ -56,6 +57,7 @@ export const cities: ICityRowProps[] = [
                 weather_description: "sunny", // could be used for selected forecast card
             },
         ],
+        toggleRow(e: React.MouseEvent): void;
     },
     {
         cityName: "New York",
@@ -66,6 +68,7 @@ export const cities: ICityRowProps[] = [
             { imgUrl: "02d" },
             { imgUrl: "04d" },
         ],
+        id: 2,
         forecasts: [
             {
                 date_str: "Today", // 15th, 16th...
@@ -113,6 +116,7 @@ export const cities: ICityRowProps[] = [
                 weather_description: "broken clouds", // could be used for selected forecast card
             },
         ],
+        toggleRow(e: React.MouseEvent): void;
     },
     {
         cityName: "Paris",
@@ -123,6 +127,7 @@ export const cities: ICityRowProps[] = [
             { imgUrl: "01d" },
             { imgUrl: "10d" },
         ],
+        id: 3,
         forecasts: [
             {
                 date_str: "Today", // 15th, 16th...
@@ -170,6 +175,7 @@ export const cities: ICityRowProps[] = [
                 weather_description: "broken clouds", // could be used for selected forecast card
             },
         ],
+        toggleRow(e: React.MouseEvent): void;
     },
     {
         cityName: "Sydney",
@@ -180,6 +186,7 @@ export const cities: ICityRowProps[] = [
             { imgUrl: "10d" },
             { imgUrl: "13d" },
         ],
+        id: 4,
         forecasts: [
             {
                 date_str: "Today", // 15th, 16th...
@@ -227,6 +234,7 @@ export const cities: ICityRowProps[] = [
                 weather_description: "broken clouds", // could be used for selected forecast card
             },
         ],
+        toggleRow(e: React.MouseEvent): void;
     },
     {
         cityName: "Moscow",
@@ -237,6 +245,7 @@ export const cities: ICityRowProps[] = [
             { imgUrl: "11d" },
             { imgUrl: "13d" },
         ],
+        id: 5,
         forecasts: [
             {
                 date_str: "Today", // 15th, 16th...
@@ -284,5 +293,6 @@ export const cities: ICityRowProps[] = [
                 weather_description: "broken clouds", // could be used for selected forecast card
             },
         ],
+        toggleRow(e: React.MouseEvent): void;
     },
 ];

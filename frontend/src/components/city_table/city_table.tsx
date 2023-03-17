@@ -9,7 +9,6 @@ import { cities } from "../../dummy/dummy_data";
 
 export interface ICityTableProps {
     cities: ICityRowProps[];
-    forecasts: IForecast[];
 }
 
 export interface IForecast {
@@ -31,17 +30,26 @@ export interface IIsOpen {
 }
 
 export const CityTable: React.FC = () => {
-    const [open, setOpen]: IIsOpen = {
+    const toggleRow = (e: React.MouseEvent<HTMLButtonElement>) => {
+        const openId = e.target.id;
+        setRowOpen(rowOpen[openId]);
+    };
+    const [rowOpen, setRowOpen] = useState({
         1: false,
         2: false,
         3: false,
         4: false,
         5: false,
-    };
+    });
     return (
         <div className="city-table col">
             {cities.map((city, index) => (
-                <CityRow key={index} {...city} onClick={setOpen(!open)} />
+                <CityRow
+                    key={index}
+                    {...city}
+                    id={index}
+                    toggleRow={toggleRow}
+                />
             ))}
         </div>
     );
