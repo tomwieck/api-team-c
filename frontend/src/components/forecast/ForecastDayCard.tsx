@@ -4,25 +4,28 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faWind, faDroplet } from "@fortawesome/free-solid-svg-icons";
 
-type ForecastDayCardType = {
+// TODO move to separate file types/forecast_types.tsx
+export interface IForecast {
+  date_str: string;
+  icon_id: string;
+  temp_day_min: string;
+  temp_day_max: string;
+  wind_speed: string;
+  humidity: number;
+  weather_description: string;
+}
+
+type ForecastDayCarProps = {
+  forecast: IForecast;
   isActive: boolean;
   toggleActive: () => void;
 };
 
-const ForecastDayCard: React.FC<ForecastDayCardType> = ({
+const ForecastDayCard: React.FC<ForecastDayCarProps> = ({
+  forecast,
   isActive,
   toggleActive,
 }) => {
-  const forecast = {
-    date_str: "Today", // 15th, 16th...
-    icon_id: "10d",
-    temp_day_min: "9°",
-    temp_day_max: "12°",
-    wind_speed: "4m/s",
-    humidity: 51,
-    weather_description: "broken clouds", // could be used for selected forecast card
-  };
-
   const iconClassName = `city-row__weather-icon--${forecast.icon_id}`;
 
   return (
