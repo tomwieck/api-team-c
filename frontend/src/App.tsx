@@ -2,7 +2,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
 
-import CityForecast from "./components/forecast/city_forecast";
+import CityForecast from "./components/city_forecast/city_forecast";
 
 import {
     Button,

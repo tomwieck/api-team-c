@@ -21,6 +21,7 @@ const CityForecast: React.FC = () => {
                     {cityWeather &&
                         cityWeather.forecasts.map((forecast, index) => (
                             <ForecastDayCard
+                                key={cityName + index}
                                 forecast={forecast}
                                 isActive={index === activeCard}
                                 toggleActive={() => updateActiveCard(index)}
