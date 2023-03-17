@@ -22,11 +22,8 @@ export const CityRow: React.FC<ICityRowProps> = ({
             <Col className="col-3">
                 <h3 className="city-row__city-name">{cityName}</h3>
             </Col>
-            <Col className="col-8">
+            <Col className="col-9">
                 <WeatherIconRow weatherIcons={weatherIcons} />
-            </Col>
-            <Col className="col-1">
-                <Button />
             </Col>
         </Row>
     );

@@ -2,19 +2,9 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
 
-import CityForecast from "./components/city_forecast/city_forecast";
-
-import {
-    Button,
-    Container,
-    Row,
-    Nav,
-    Navbar,
-    NavDropdown,
-} from "react-bootstrap";
+import { Container, Row, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { CitySearch } from "./components/city_search/city_search";
 import { CityTable, ICityTableProps } from "./components/city_table/city_table";
-import { ICityRowProps } from "./components/city_row/city_row";
 
 function App() {
     return (
@@ -57,7 +47,6 @@ function App() {
                 <Row>
                     <CityTable />
                 </Row>
-                <CityForecast />
             </Container>
         </div>
     );

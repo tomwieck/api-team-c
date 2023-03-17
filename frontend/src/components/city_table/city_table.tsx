@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { CityRow } from "../city_row/city_row";
 import { ICityRowProps } from "../city_row/city_row";
+import CityForecast from "../city_forecast/city_forecast";
 
 import { cities } from "../../dummy/dummy_data";
 
@@ -39,11 +40,14 @@ export const CityTable: React.FC = () => {
     return (
         <div className="city-table col">
             {cities.map((city, index) => (
-                <CityRow
-                    key={index}
-                    {...city}
-                    toggleRow={() => toggleRow(index)}
-                />
+                <>
+                    <CityRow
+                        key={index}
+                        {...city}
+                        toggleRow={() => toggleRow(index)}
+                    />
+                    <CityForecast />
+                </>
             ))}
         </div>
     );
