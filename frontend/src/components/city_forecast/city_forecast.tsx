@@ -1,38 +1,44 @@
 import ForecastDayCard from "./forecast_day_card";
 import { useState } from "react";
-import { cities } from "../../dummy/dummy_data";
-import { ICityProps } from "../city_table/city_table";
+
 import { Row } from "react-bootstrap";
+import { IForecast } from "../../types/forecast_frontend.types";
 
-const CityForecast: React.FC<ICityProps> = ({
-    cityName,
-    forecasts,
-    toggleRow,
+interface ICityForecastProps {
+  cityName: string;
+  forecasts: IForecast[];
+  toggleRow(): void;
+}
+
+const CityForecast: React.FC<ICityForecastProps> = ({
+  cityName,
+  forecasts,
+  toggleRow,
 }) => {
-    const [activeCard, setActiveCard] = useState(0);
+  const [activeCard, setActiveCard] = useState(0);
 
-    const updateActiveCard = (index: number) => {
-        setActiveCard(index);
-    };
+  const updateActiveCard = (index: number) => {
+    setActiveCard(index);
+  };
 
-    return (
-        <>
-            <Row className="city-row gx-2">
-                <h3 className="city">{cityName}</h3>
-                <div className="forecast-day-container">
-                    {cityName &&
-                        forecasts.map((forecast, index) => (
-                            <ForecastDayCard
-                                // key={city.cityName + index}
-                                forecast={forecast}
-                                isActive={index === activeCard}
-                                toggleActive={() => updateActiveCard(index)}
-                            />
-                        ))}
-                </div>
-            </Row>
-        </>
-    );
+  return (
+    <>
+      <Row className="city-row gx-2">
+        <h3 className="city">{cityName}</h3>
+        <div className="forecast-day-container">
+          {cityName &&
+            forecasts.map((forecast, index) => (
+              <ForecastDayCard
+                // key={city.cityName + index}
+                forecast={forecast}
+                isActive={index === activeCard}
+                toggleActive={() => updateActiveCard(index)}
+              />
+            ))}
+        </div>
+      </Row>
+    </>
+  );
 };
 
 export default CityForecast;
