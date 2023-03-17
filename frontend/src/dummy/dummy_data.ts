@@ -1,17 +1,7 @@
+import { IForecast } from "../components/city_forecast/forecast_day_card";
 interface IForecastIcon {
     imgUrl: string;
 }
-
-interface IForecast {
-    date_str: string;
-    icon_id: string;
-    temp_day_min: string;
-    temp_day_max: string;
-    wind_speed: string;
-    humidity: number;
-    weather_description: string;
-}
-
 interface IForecastCity {
     cityName: string;
     weatherIcons: IForecastIcon[];

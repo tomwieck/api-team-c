@@ -10,16 +10,6 @@ export interface ICityTableProps {
     cities: ICityRowProps[];
 }
 
-export interface IForecast {
-    date_str: string;
-    icon_id: string;
-    temp_day_min: string;
-    temp_day_max: string;
-    wind_speed: string;
-    humidity: number;
-    weather_description: string;
-}
-
 export interface IIsOpen {
     [key: number]: boolean;
 }
