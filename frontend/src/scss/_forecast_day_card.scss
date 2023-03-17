@@ -1,0 +1,42 @@
+.forecast-day-container {
+  display: flex;
+}
+
+.forecast-card {
+  width: 200px;
+
+  &--active {
+    width: 300px;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__icon-wrapper {
+    margin-top: -20px;
+    margin-left: -20px;
+  }
+
+  &__temperatures {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10px;
+  }
+
+  &__max-temperature {
+    font-weight: bold;
+  }
+
+  &__description {
+    margin-left: 20px;
+    padding-left: 20px;
+    border-left: 1px solid #dbdde6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

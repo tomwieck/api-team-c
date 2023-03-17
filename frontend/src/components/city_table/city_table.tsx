@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { Col } from "react-bootstrap";
 
-import { Counter } from "../counter/counter";
 import { CityRow } from "../city_row/city_row";
 import { ICityRowProps } from "../city_row/city_row";
 
@@ -13,7 +11,7 @@ export interface ICityTableProps {
 
 export interface IForecast {
     date_str: string;
-    icon_url: string;
+    icon_id: string;
     temp_day_min: string;
     temp_day_max: string;
     wind_speed: string;
@@ -22,19 +20,16 @@ export interface IForecast {
 }
 
 export interface IIsOpen {
-    1: boolean;
-    2: boolean;
-    3: boolean;
-    4: boolean;
-    5: boolean;
+    [key: number]: boolean;
 }
 
 export const CityTable: React.FC = () => {
-    const toggleRow = (e: React.MouseEvent<HTMLButtonElement>) => {
-        const openId = e.target.id;
-        setRowOpen(rowOpen[openId]);
+    const toggleRow = (index: number) => {
+        const newRowOpen = { ...rowOpen };
+        newRowOpen[index] = !newRowOpen[index];
+        setRowOpen(newRowOpen);
     };
-    const [rowOpen, setRowOpen] = useState({
+    const [rowOpen, setRowOpen] = useState<IIsOpen>({
         1: false,
         2: false,
         3: false,
@@ -47,8 +42,7 @@ export const CityTable: React.FC = () => {
                 <CityRow
                     key={index}
                     {...city}
-                    id={index}
-                    toggleRow={toggleRow}
+                    toggleRow={() => toggleRow(index)}
                 />
             ))}
         </div>

@@ -1,58 +1,69 @@
 import Card from "react-bootstrap/Card";
 
-type ForecastDayCardType = {
-    isActive: boolean;
-    toggleActive: () => void;
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { faWind, faDroplet } from "@fortawesome/free-solid-svg-icons";
+
+// TODO move to separate file types/forecast_types.tsx
+export interface IForecast {
+  date_str: string;
+  icon_id: string;
+  temp_day_min: string;
+  temp_day_max: string;
+  wind_speed: string;
+  humidity: number;
+  weather_description: string;
+}
+
+type ForecastDayCarProps = {
+  forecast: IForecast;
+  isActive: boolean;
+  toggleActive: () => void;
 };
 
-const ForecastDayCard: React.FC<ForecastDayCardType> = ({
-    isActive,
-    toggleActive,
+const ForecastDayCard: React.FC<ForecastDayCarProps> = ({
+  forecast,
+  isActive,
+  toggleActive,
 }) => {
-    const forecast = {
-        date_str: "Today", // 15th, 16th...
-        icon_url: "10d",
-        temp_day_min: "9°",
-        temp_day_max: "12°",
-        wind_speed: "4m/s",
-        humidity: 51,
-        weather_description: "broken clouds", // could be used for selected forecast card
-    };
+  const iconClassName = `city-row__weather-icon--${forecast.icon_id}`;
 
-    return (
-        <>
-            <Card
-                className={
-                    isActive
-                        ? "forecast-card forecast-card--active"
-                        : "forecast-card"
-                }
-                onClick={(e) => toggleActive()}
-            >
-                <Card.Body>
-                    <p>{forecast.date_str}</p>
-                    <div className="forecast-card__content">
-                        <div>
-                            <img src={forecast.icon_url} alt="" />
-                        </div>
-                        <div className="forecast-card__temperatures">
-                            <div>{forecast.temp_day_min}</div>
-                            <div>{forecast.temp_day_max}</div>
-                        </div>
-                        {isActive && (
-                            <div className="forecast-card__description">
-                                {forecast.weather_description}
-                            </div>
-                        )}
-                    </div>
-                </Card.Body>
-                <Card.Footer>
-                    humidity {forecast.humidity} | wind_speed{" "}
-                    {forecast.wind_speed}
-                </Card.Footer>
-            </Card>
-        </>
-    );
+  return (
+    <>
+      <Card
+        className={
+          isActive ? "forecast-card forecast-card--active" : "forecast-card"
+        }
+        onClick={e => toggleActive()}
+      >
+        <Card.Body>
+          <p>{forecast.date_str}</p>
+          <div className="forecast-card__content">
+            <div className="forecast-card__icon-wrapper">
+              <i className={iconClassName}></i>
+            </div>
+            <div className="forecast-card__temperatures">
+              <div className="forecast-card__max-temperature">
+                {forecast.temp_day_max}
+              </div>
+              <div>{forecast.temp_day_min}</div>
+            </div>
+            {isActive && (
+              <div className="forecast-card__description">
+                {forecast.weather_description}
+              </div>
+            )}
+          </div>
+        </Card.Body>
+        <Card.Footer>
+          <FontAwesomeIcon name="humidity" icon={faDroplet} key="icon" />{" "}
+          {forecast.humidity}% |{" "}
+          <FontAwesomeIcon name="wind" icon={faWind} key="icon" />{" "}
+          {forecast.wind_speed}
+        </Card.Footer>
+      </Card>
+    </>
+  );
 };
 
 export default ForecastDayCard;
