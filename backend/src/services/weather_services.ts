@@ -17,10 +17,10 @@ export const get5DayForecast = async (id: string) => {
   const city = cities.find((city) => city.id === id);
 
   if (!city) {
-    console.log("1" + city);
+    
     return null;
   } else {
-    console.log("2" + city);
+   
     const response = await fetch(
       `https://api.openweathermap.org/data/3.0/onecall?lat=${city.lat}&lon=${city.lon}&exclude=hourly&appid=${process.env.WEATHER_API_KEY}&units=metric`
     );
@@ -85,16 +85,16 @@ export const get5DayForecast = async (id: string) => {
 export const get1DayForcast = async (id: string) => {
 
   const city = cities.find((city) => city.id === id);
-  console.log(city);
+  
   if (city) {
-    console.log('1');
+ 
     const response = await fetch(
       `https://api.openweathermap.org/data/3.0/onecall?lat=${city.lat}&lon=${city.lon}&exclude=daily&appid=${process.env.WEATHER_API_KEY}&units=metric`
     );
     const data = await response.json();
     return data;
   } else {
-    console.log('2');
+     
     return null;
   }
 };
