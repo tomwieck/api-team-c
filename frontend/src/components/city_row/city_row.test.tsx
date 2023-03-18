@@ -5,7 +5,7 @@ import React from "react";
 test("renders city name ", () => {
   // const cityRowData: ICityProps = {
   //   cityName: "London",
-  //   weatherIcons: [{ imgUrl: "windy" }, { imgUrl: "sunny" }],
+  //   weatherIcons: [{ imgId: "windy" }, { imgId: "sunny" }],
   //   forecasts: [
   //     {
   //       date_str: "Today", // 15th, 16th...

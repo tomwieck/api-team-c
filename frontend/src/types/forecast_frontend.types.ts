@@ -1,5 +1,5 @@
 export interface IForecastIcon {
-  imgUrl: string;
+  imgId: string;
 }
 
 export interface IForecastCity {
