@@ -1,7 +1,10 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.scss";
 
-import { Button, Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Container, Row, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { CitySearch } from "./components/city_search/city_search";
+import { CityTable } from "./components/city_table/city_table";
 
 function App() {
   return (
@@ -19,7 +22,9 @@ function App() {
                 <NavDropdown.Item href="#action/3.2">
                   Another action
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.3">
+                  Something
+                </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="#action/3.4">
                   Separated link
@@ -29,13 +34,15 @@ function App() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-
-      <div>Animation for loading...</div>
-      <div>
-        <input type="text"></input>
-        <Button>Find weather</Button>
-      </div>
-      <div>Weather for today, for tomorrow, day after tomorrow ...</div>
+      <h3>Compare the weather for the next 5 days</h3>
+      <Container>
+        <Row>
+          <CitySearch />
+        </Row>
+        <Row>
+          <CityTable />
+        </Row>
+      </Container>
     </div>
   );
 }
