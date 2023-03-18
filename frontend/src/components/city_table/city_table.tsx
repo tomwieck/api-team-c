@@ -25,14 +25,14 @@ export const CityTable: React.FC = () => {
   return (
     <div className="city-table col">
       {cities.map((city, index) => (
-        <>
-          <CityRow key={index} {...city} toggleRow={() => toggleRow(index)} />
-          <CityForecast
-            key={index}
+        <React.Fragment key={"city_table" + index}>
+          <CityRow
+            key={"city_row_" + index}
             {...city}
             toggleRow={() => toggleRow(index)}
           />
-        </>
+          <CityForecast {...city} toggleRow={() => toggleRow(index)} />
+        </React.Fragment>
       ))}
     </div>
   );
