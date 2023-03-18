@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon src/server.ts",
-    "test": "jest --watch"
+    "test": "jest --watchAll"
   },
+   
   "keywords": [],
   "author": "",
   "license": "ISC",
