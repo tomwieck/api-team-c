@@ -19,7 +19,21 @@
 }
 
 .city-row__city-name {
-  // display: inline-block;
+  cursor: pointer;
+  color: #6a6a6a;
+  transition: .25s;
+  transform-origin: left center;
+
+  &:hover {
+    color: black;
+    transform: scale(1.1);
+
+  }
+
+  &--forecast {
+    @extend .city-row__city-name;
+    text-align: left;
+  }
 }
 
 .city-row__weather-icon {
