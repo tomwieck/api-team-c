@@ -1,0 +1,155 @@
+.city-table {
+  border: 3px solid gray;
+  border-radius: .25rem;
+  padding: 1rem 1.5rem;
+}
+
+.city-row {
+  border: 1px solid rgb(190, 190, 190);
+  border-radius: .25rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: .5rem;
+
+  &:last-child {
+    margin-bottom: 0;
+
+  }
+}
+
+.city-row__city-name {
+  cursor: pointer;
+  color: #6a6a6a;
+  transition: .25s;
+  transform-origin: left center;
+
+  &:hover {
+    color: black;
+    transform: scale(1.1);
+
+  }
+
+  &--forecast {
+    @extend .city-row__city-name;
+    text-align: left;
+  }
+}
+
+.city-row__weather-icon {
+  height: 5rem;
+  width: 5rem;
+  display: inline-block;
+  margin-bottom: 0;
+
+  &--sunny {
+    @extend .city-row__weather-icon;
+    background: url(../../public/weather-icons.png) 0 0;
+
+  }
+
+  &--thunderstorm {
+    @extend .city-row__weather-icon;
+    background: url(../../public/weather-icons.png) 0 0;
+
+  }
+
+  &--drizzle {
+    @extend .city-row__weather-icon;
+    background: url(../../public/weather-icons.png) 0 0;
+
+  }
+
+  &--rain {
+    @extend .city-row__weather-icon;
+    background: url(../../public/weather-icons.png) 0 0;
+
+  }
+
+  &--snow {
+    @extend .city-row__weather-icon;
+    background: url(../../public/weather-icons.png) 0 0;
+
+  }
+
+  &--mist,
+  &--haze,
+  &--dust,
+  &--fog,
+  &--sand,
+  &--dust,
+  &--ash,
+  &--squall,
+  &--tornado {
+    @extend .city-row__weather-icon;
+    background: url(../../public/weather-icons.png) 0 0;
+
+  }
+
+  &--clear {
+    @extend .city-row__weather-icon;
+    background: url(../../public/weather-icons.png) 0 0;
+
+  }
+
+  &--clouds {
+    @extend .city-row__weather-icon;
+    background: url(../../public/weather-icons.png) 0 0;
+
+  }
+
+  &--01d {
+    @extend .city-row__weather-icon;
+    background: url(../../public/weather-icons.png) 0 0;
+
+  }
+
+  &--02d {
+    @extend .city-row__weather-icon;
+    background: url(../../public/weather-icons.png) 300px 0;
+
+  }
+
+  &--03d {
+    @extend .city-row__weather-icon;
+    background: url(../../public/weather-icons.png) 0 310px;
+
+  }
+
+  &--04d {
+    @extend .city-row__weather-icon;
+    background: url(../../public/weather-icons.png) 300px 310px;
+
+  }
+
+  &--09d {
+    @extend .city-row__weather-icon;
+    background: url(../../public/weather-icons.png) 0 205px;
+
+  }
+
+  &--10d {
+    @extend .city-row__weather-icon;
+    background: url(../../public/weather-icons.png) 300px 208px;
+
+  }
+
+  &--11d {
+    @extend .city-row__weather-icon;
+    background: url(../../public/weather-icons.png) 0 105px;
+
+  }
+
+  &--13d {
+    @extend .city-row__weather-icon;
+    background: url(../../public/weather-icons.png) 300px 105px;
+
+  }
+
+  &--50d {
+    @extend .city-row__weather-icon;
+    background: url(../../public/weather-icons.png) 110px 0;
+
+  }
+
+}
