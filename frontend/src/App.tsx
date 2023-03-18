@@ -6,8 +6,6 @@ import { Container, Row, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { CitySearch } from "./components/city_search/city_search";
 import { CityTable } from "./components/city_table/city_table";
 
-import Search from './components/Search'
-
 function App() {
   return (
     <div className="App">
@@ -45,7 +43,6 @@ function App() {
           <CityTable />
         </Row>
       </Container>
-      {/* <Search></Search> */}
     </div>
   )
 }

@@ -26,7 +26,7 @@ export const CitySearch: React.FC = () => {
           <div>
             <ul>
               {
-                citiesData.filter((f: City) => f.longName.includes(filter) || filter === '')
+                citiesData.filter((f: City) => f.longName.toLowerCase().includes(filter.toLowerCase()) || filter === '')
                 .map((f: City) => 
                   <li key={JSON.stringify(f)}>
                     {JSON.stringify(f)}
