@@ -28,14 +28,15 @@ export const CitySearch: React.FC = () => {
               {
                 citiesData.filter((f: City) => f.longName.toLowerCase().includes(filter.toLowerCase()) || filter === '')
                 .map((f: City) => 
-                  <li key={JSON.stringify(f)}>
-                    {JSON.stringify(f)}
+                  <li
+                    className="city-list-item" 
+                    key={f.id + Math.random()}>
+                      {f.longName}
                   </li>
                 )
               }
             </ul>
           </div>
-          {/* <input className="w-100" type="text" placeholder="Enter City" /> */}
       </>
   );
 };
