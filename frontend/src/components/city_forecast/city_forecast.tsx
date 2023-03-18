@@ -1,7 +1,7 @@
 import ForecastDayCard from "./forecast_day_card";
 import { useState } from "react";
 
-import { Row } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { IForecast } from "../../types/forecast_frontend.types";
 
 interface ICityForecastProps {
@@ -23,19 +23,26 @@ const CityForecast: React.FC<ICityForecastProps> = ({
 
   return (
     <>
-      <Row className="city-row gx-2">
-        <h3 className="city">{cityName}</h3>
-        <div className="forecast-day-container">
-          {cityName &&
-            forecasts.map((forecast, index) => (
-              <ForecastDayCard
-                key={"city_forecast_" + index}
-                forecast={forecast}
-                isActive={index === activeCard}
-                toggleActive={() => updateActiveCard(index)}
-              />
-            ))}
-        </div>
+      <Row className="city-row">
+        <Col>
+          <h3
+            className="city-row__city-name--forecast"
+            onClick={(e) => toggleRow()}
+          >
+            {cityName}
+          </h3>
+          <div className="forecast-day-container">
+            {cityName &&
+              forecasts.map((forecast, index) => (
+                <ForecastDayCard
+                  key={"city_forecast_" + index}
+                  forecast={forecast}
+                  isActive={index === activeCard}
+                  toggleActive={() => updateActiveCard(index)}
+                />
+              ))}
+          </div>
+        </Col>
       </Row>
     </>
   );
