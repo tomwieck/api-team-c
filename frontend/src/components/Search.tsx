@@ -7,7 +7,7 @@ import { City } from "../types/city.types";
 
 
 function Search() {
-  const [filter, setFilter] = useState('');
+  const [filterText, setFilterText] = useState('');
 
     return (
       <div>
@@ -16,14 +16,14 @@ function Search() {
             type="search"
             id="search"
             placeholder='Search...'
-            value={filter}
-            onChange={event => setFilter(event.target.value)}
+            value={filterText.toLowerCase()}
+            onChange={event => setFilterText(event.target.value.toLowerCase())}
           />
         </div>
         <div>
           <ul>
             {
-              citiesData.filter((f: City) => f.longName.includes(filter) || filter === '')
+              citiesData.filter((f: City) => f.longName.toLowerCase().includes(filterText.toLowerCase()) || filterText === '')
               .map((f: City) => 
                 <li key={JSON.stringify(f)}>
                   {JSON.stringify(f)}

@@ -45,7 +45,7 @@ function App() {
           <CityTable />
         </Row>
       </Container>
-      <Search></Search>
+      {/* <Search></Search> */}
     </div>
   )
 }
