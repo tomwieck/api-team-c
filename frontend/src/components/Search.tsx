@@ -1,11 +1,7 @@
 import Form from 'react-bootstrap/Form';
 import { useState } from 'react';
 
-// import initialData from '../data/initialData';
-
 import cities from '../data/cities';
-
-
 
 function Search() {
   const [filter, setFilter] = useState('');
