@@ -39,7 +39,7 @@ export const servGet5DaysForecast = async (id: string) => {
 
     const apiDaily: ApiDaily[] = apiData.daily;
     
-    const days: OneDaysData[] = apiDaily.slice(5).map((day) => {
+    const days: OneDaysData[] = apiDaily.slice(0,5).map((day) => {
       const weather = day.weather[0];
 
       return {
