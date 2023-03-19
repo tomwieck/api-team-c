@@ -1,14 +1,20 @@
-import express from 'express';
+import express from "express";
 import * as weatherController from "../controllers/weather_controller";
 
-
 export const router = express.Router();
- 
-router.get('/', (req, res) => res.send('Welcome to weather API'));
 
-router.get('/cities', weatherController.getCities);
+router.use((req, res, next) => {
+  // we'll use this router to return specifically JSON
+  res.setHeader("Content-Type", "application/json");
+  res.setHeader("Access-Control-Allow-Origin", "*");
 
-router.get('/city/1', weatherController.getOneDayForecast);
+  next();
+});
 
-router.get('/city/5', weatherController.getCityFiveDayForecast);
+router.get("/", (req, res) => res.send("Welcome to weather API"));
 
+router.get("/cities", weatherController.getCities);
+
+router.get("/city/1", weatherController.getOneDayForecast);
+
+router.get("/city/5", weatherController.getCityFiveDayForecast);
