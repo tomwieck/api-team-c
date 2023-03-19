@@ -20,8 +20,8 @@ export const get_city_data = (
   if (data !== undefined) {
     const daily_data = data.daily.slice(0, 5);
     const forecasts = daily_data.map(get_day_forecast_data);
-    const weatherIcons = forecasts.map(forecast => ({
-      imgId: forecast.icon_id,
+    const weatherIcons = forecasts.map((forecast) => ({
+      iconId: forecast.icon_id,
     }));
     return {
       cityName: data.cityName,

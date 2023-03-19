@@ -4,11 +4,11 @@ export const cities: IForecastCity[] = [
   {
     cityName: "London",
     weatherIcons: [
-      { imgId: "01d" },
-      { imgId: "02d" },
-      { imgId: "03d" },
-      { imgId: "04d" },
-      { imgId: "01d" },
+      { iconId: "01d" },
+      { iconId: "02d" },
+      { iconId: "03d" },
+      { iconId: "04d" },
+      { iconId: "01d" },
     ],
     forecasts: [
       {
@@ -61,11 +61,11 @@ export const cities: IForecastCity[] = [
   {
     cityName: "New York",
     weatherIcons: [
-      { imgId: "03d" },
-      { imgId: "04d" },
-      { imgId: "03d" },
-      { imgId: "02d" },
-      { imgId: "04d" },
+      { iconId: "03d" },
+      { iconId: "04d" },
+      { iconId: "03d" },
+      { iconId: "02d" },
+      { iconId: "04d" },
     ],
     forecasts: [
       {
@@ -118,11 +118,11 @@ export const cities: IForecastCity[] = [
   {
     cityName: "Paris",
     weatherIcons: [
-      { imgId: "09d" },
-      { imgId: "10d" },
-      { imgId: "03d" },
-      { imgId: "01d" },
-      { imgId: "10d" },
+      { iconId: "09d" },
+      { iconId: "10d" },
+      { iconId: "03d" },
+      { iconId: "01d" },
+      { iconId: "10d" },
     ],
     forecasts: [
       {
@@ -175,11 +175,11 @@ export const cities: IForecastCity[] = [
   {
     cityName: "Sydney",
     weatherIcons: [
-      { imgId: "11d" },
-      { imgId: "13d" },
-      { imgId: "03d" },
-      { imgId: "10d" },
-      { imgId: "13d" },
+      { iconId: "11d" },
+      { iconId: "13d" },
+      { iconId: "03d" },
+      { iconId: "10d" },
+      { iconId: "13d" },
     ],
     forecasts: [
       {
@@ -232,11 +232,11 @@ export const cities: IForecastCity[] = [
   {
     cityName: "Moscow",
     weatherIcons: [
-      { imgId: "50d" },
-      { imgId: "13d" },
-      { imgId: "03d" },
-      { imgId: "11d" },
-      { imgId: "13d" },
+      { iconId: "50d" },
+      { iconId: "13d" },
+      { iconId: "03d" },
+      { iconId: "11d" },
+      { iconId: "13d" },
     ],
     forecasts: [
       {

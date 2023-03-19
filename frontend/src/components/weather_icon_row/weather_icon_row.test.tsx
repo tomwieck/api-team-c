@@ -5,7 +5,11 @@ import { IWeatherIconRowProps } from "./weather_icon_row";
 
 test("renders input placeholder text", () => {
   const weatherIconRowData: IWeatherIconRowProps = {
-    weatherIcons: [{ imgId: "sunny" }, { imgId: "windy" }, { imgId: "rainy" }],
+    weatherIcons: [
+      { iconId: "sunny" },
+      { iconId: "windy" },
+      { iconId: "rainy" },
+    ],
   };
   render(<WeatherIconRow {...weatherIconRowData} />);
   // const placeholder = screen.getByText(/Counter/i);

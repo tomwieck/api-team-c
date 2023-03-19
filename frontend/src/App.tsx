@@ -95,16 +95,7 @@ function App() {
       <h3>Compare the weather for the next 5 days</h3>
       <Container>
         <Row>
-          <CitySearch />
-        </Row>
-        <Button onClick={e => handleTestButtonClick()}>
-          Test Fetching Forecast
-        </Button>
-        <p>Current id "{cityId}"</p>
-        <p>Using hardcoded cityIds "{cityIds.join(", ")}"</p>
-
-        <Row>
-          <CityTable cityForecasts={cityForecasts} />
+          <CityTable />
         </Row>
       </Container>
     </div>
