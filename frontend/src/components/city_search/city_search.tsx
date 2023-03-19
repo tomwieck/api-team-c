@@ -55,13 +55,8 @@ export const CitySearch: React.FC = () => {
         placeholder="Search for a city"
         styling={{
           border: "1px solid gray;",
-          // borderRadius: ".25rem",
-          // backgroundColor: "white",
-          // boxShadow: "rgba(32, 33, 36, 0.28) 0px 1px 6px 0px",
-          // hoverBackgroundColor: "#eee",
-          // color: "#212121",
+          borderRadius: ".25rem",
           fontSize: "2rem",
-          // fontFamily: "Arial",
           iconColor: "grey",
           lineColor: "rgb(232, 234, 237)",
           placeholderColor: "grey",
