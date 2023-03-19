@@ -7,7 +7,6 @@
     "start": "nodemon src/server.ts",
     "test": "jest --watchAll"
   },
-   
   "keywords": [],
   "author": "",
   "license": "ISC",

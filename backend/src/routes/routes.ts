@@ -1,5 +1,5 @@
 import express from "express";
-import * as weatherController from "../controllers/weather_controller";
+import * as controller from "../controllers/controller";
 
 export const router = express.Router();
 
@@ -13,8 +13,8 @@ router.use((req, res, next) => {
 
 router.get("/", (req, res) => res.send("Welcome to weather API"));
 
-router.get("/cities", weatherController.getCities);
+router.get("/cities", controller.getCities);
 
-router.get("/city/1", weatherController.getCityDailyForecast);
+router.get("/city/1", controller.getOneDayForecast);
 
-router.get("/city/5", weatherController.getCityFiveDayForecast);
+router.get("/city/5", controller.getFiveDayForecast);
