@@ -27,7 +27,22 @@
 }
 
 .city-row__city-name {
-  //
+
+  cursor: pointer;
+  color: #6a6a6a;
+  transition: .25s;
+  transform-origin: left center;
+
+  &:hover {
+    color: black;
+    transform: scale(1.1);
+
+  }
+
+  &--forecast {
+    @extend .city-row__city-name;
+    text-align: left;
+  }
 }
 
 .city-row__weather-icon {
@@ -146,4 +161,15 @@
 
   }
 
+}
+
+.city-row__delete-button {
+  background-color: #ec6d4c;
+  border-color: #bf5812;
+
+  &:hover {
+    background-color: #d05d3f;
+    border-color: #8f4832;
+
+  }
 }
