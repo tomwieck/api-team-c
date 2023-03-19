@@ -281,7 +281,7 @@ describe("Test home API endpoint request", () => {
 
   test("successfully returned five day forecast", async () => {    
     (
-      weatherService.getWeather as jest.Mock
+      weatherService.get5DaysForecast as jest.Mock
     ).mockResolvedValue(dummy5dayForecast);
     // Act
     const res = await request(app).get("/city/5?id=Kab6934");
@@ -318,7 +318,7 @@ describe("Test home API endpoint request", () => {
 
   test("successfully returned 404 when an invalid id supplied for one day forecast", async () => {    
     (
-      weatherService.getWeather as jest.Mock
+      weatherService.get5DaysForecast as jest.Mock
     ).mockResolvedValue(null);
     // Act
     const res = await request(app).get("/city/5?id=xxxx");

@@ -22,7 +22,7 @@ export const getCityFiveDayForecast = async (req: Request, res: Response) => {
       res.status(404).json("City ID required.");
     } else {
 
-      const data = await weatherService.getWeather(req.query.id.toString());
+      const data = await weatherService.get5DaysForecast(req.query.id.toString());
      
       if (!data) {
         res.status(404).json("Unknown city.");
@@ -36,7 +36,7 @@ export const getCityFiveDayForecast = async (req: Request, res: Response) => {
 
 };
 
-export const getCityDailyForecast = async (req: Request, res: Response) => {
+export const getOneDayForecast = async (req: Request, res: Response) => {
 
   try {
     
@@ -44,7 +44,7 @@ export const getCityDailyForecast = async (req: Request, res: Response) => {
       res.status(404).json("City ID required.");
     } else {
       
-      const data = await weatherService.get1DayForcast(req.query.id.toString()); 
+      const data = await weatherService.get1DayForecast(req.query.id.toString()); 
       if (!data) {
          
         res.status(404).json("Unknown city.");

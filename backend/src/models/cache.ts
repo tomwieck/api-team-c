@@ -7,7 +7,7 @@ import {
 
 import { cacheDb } from "../database/database";
 
-export class Cache extends Model
+export class Cache5Day extends Model
 // <
 // 	InferAttributes<Cache>,
 // 	InferCreationAttributes<Cache>
@@ -18,7 +18,7 @@ export class Cache extends Model
 	declare public readonly updatedAt: Date;
 } [];
 
-Cache.init(
+Cache5Day.init(
 	{
 		id: {
 			type: DataTypes.STRING,
@@ -31,14 +31,43 @@ Cache.init(
 		},
 	},
 	{
-		modelName: "cache",
+		modelName: "cache5",
 		sequelize: cacheDb,
-		// timestamps: true,
-		// createdAt: false,
-		// updatedAt: 'updatedAt'
 	}
 )
 
-const cacheInit = async () => await Cache.sync({force:true});
-cacheInit();
+export class Cache1Day extends Model
+// <
+// 	InferAttributes<Cache>,
+// 	InferCreationAttributes<Cache>
+// > 
+{
+	declare id: string;
+	declare json: string;
+	declare public readonly updatedAt: Date;
+} [];
+
+Cache1Day.init(
+	{
+		id: {
+			type: DataTypes.STRING,
+			allowNull: false,
+			primaryKey: true,
+		},
+		json: {
+			type: DataTypes.TEXT,
+			allowNull: true,
+		},
+	},
+	{
+		modelName: "cache1",
+		sequelize: cacheDb,
+	}
+);
+
+(async () => {
+	await Cache1Day.sync({force:true});
+	await Cache5Day.sync({force:true});
+}) ();
+
 
