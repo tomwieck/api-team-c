@@ -1,33 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Fade } from "react-bootstrap";
 
 import { CityRow } from "../city_row/city_row";
 import CityForecast from "../city_forecast/city_forecast";
 import { CitySearch } from "../city_search/city_search";
+import { get_city_data } from "../../helpers/get_city_data";
 
-import { cities } from "../../dummy/dummy_data";
-
-import { useFetchData } from "../../hooks/use_fetch_data";
-
+import { IForecastCity } from "../../types/forecast_frontend.types";
 import { ApiDaily } from "../../types/forecast_backend.types";
 import { API_CITY_FORECAST_FOR_5_DAYS } from "../../config/config";
-import { IForecastCity } from "../../types/forecast_frontend.types";
-
 import { City } from "../../types/city.types";
 interface IIsOpen {
   [key: number]: boolean;
 }
-
-const processData = (data: ApiDaily | undefined) => {
-  console.log(data);
-  return [];
-};
+interface ICityTableProps {
+  cityForecasts: IForecastCity[];
+}
 
 export const CityTable: React.FC = () => {
-  const dummyDataLoad = (dummyData: IForecastCity[]) => {
-    dummyData.map((city) => addRow(city));
-  };
-
   const toggleRow = (index: number) => {
     const newRowOpen = { ...rowOpen };
     newRowOpen[index] = !newRowOpen[index];
@@ -56,7 +46,7 @@ export const CityTable: React.FC = () => {
   const [selected, setSelected] = useState<City>();
 
   const handleOnSelect = (item: City) => {
-    setSelected(item);
+    setCityId(item.id);
   };
 
   const [rowOpen, setRowOpen] = useState<IIsOpen>({
@@ -68,19 +58,40 @@ export const CityTable: React.FC = () => {
   });
 
   const [cityRows, setCityRows] = useState<IForecastCity[]>([]);
+  // const [cityForecasts, setCityForecasts] = useState<IForecastCity[]>([]);
+  const [cityId, setCityId] = useState<string>();
 
   // 5 cities max
   const [isFull, setIsFull] = useState<boolean>(false);
 
-  // API call section
-  const url = selected?.id ? `${API_CITY_FORECAST_FOR_5_DAYS}?id=${selected?.id}` : '';
-
-  console.log("Getting", url);
-
-  const { data, error, isFetching, status } = useFetchData<ApiDaily | undefined>(url);
-
-  console.log(data);
   // if (!isFull) dummyDataLoad(cities);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const url = `${API_CITY_FORECAST_FOR_5_DAYS}?id=${cityId}`;
+
+      try {
+        const response = await fetch(url);
+        // console.log("response", response);
+        // setIsFetching(false);
+        if (response.status === 200) {
+          const json = await response.json();
+          // TODO refactor
+          const res = get_city_data(json);
+          if (res) addRow(res);
+        }
+        // setStatus(response.status);
+      } catch (e: unknown) {
+        // setIsFetching(false);
+        // if (isError(e)) {
+        //   setError(e.message);
+      }
+    };
+    if (cityId) {
+      fetchData();
+    }
+  }, [cityId]);
+
   return (
     <div className="city-table col">
       <CitySearch handleOnSelect={handleOnSelect} />

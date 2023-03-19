@@ -15,7 +15,6 @@ export function useFetchData<TResponse>(url: string) {
     const fetchData = async () => {
       try {
         const response = await fetch(url);
-        console.log("response", response);
         setIsFetching(false);
         if (response.status === 200) {
           const json = await response.json();
