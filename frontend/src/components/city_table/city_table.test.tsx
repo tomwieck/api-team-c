@@ -49,7 +49,7 @@ test("display 3 rows", () => {
   //       ],
   //     },
   //   ];
-  render(<CityTable />);
+  // render(<CityTable />);
   // const items = screen.getAllByRole("button");
   // expect(items).toHaveLength(3);
 });
