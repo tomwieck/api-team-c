@@ -11,3 +11,4 @@ router.get('/cities', weatherController.getCities);
 router.get('/city/1', weatherController.getCityDailyForecast);
 
 router.get('/city/5', weatherController.getCityFiveDayForecast);
+

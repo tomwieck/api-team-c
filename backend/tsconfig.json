@@ -14,6 +14,8 @@
         "moduleResolution": "node",
         "rootDir": "./src",
         "outDir": "./build",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
         "esModuleInterop": true /* Emit additional JavaScript
     to ease support for importing CommonJS modules. This enables
     'allowSyntheticDefaultImports' for type compatibility. */,

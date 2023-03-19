@@ -4,15 +4,24 @@ import { Dialect, Sequelize } from "sequelize";
         `${(process.env.DB_DIALECT as Dialect) ?? 'postgres'}:${process.env.DB_USERNAME ??'MISSING_DB_USERNAME_CONFIG'}`+
         `:${process.env.DB_PASSWORD ??'MISSING_DB_PASSWORD_CONFIG'}@${process.env.DB_HOST ?? 'MISSING_DB_HOST_CONFIG'}`+
         `/${process.env.DB_NAME ??'MISSING_DB_NAME_CONFIG'}`
-        
      : "sqlite::memory:";
+
+
+export let cacheConnString = "sqlite::memory:";
 
 console.log(`Connection String = ${connString}`);
 
-export let sequelize = new Sequelize(connString);
+export const cacheDb = new Sequelize(connString);
 
+export interface City {
+   id: string;
+   city: string;
+   country: string;
+   lat: string;
+   lon: string;
+}
 
-export const cities = [
+export const cities:City[] = [
    { id:'Kab6934', city: 'Kabul', country: 'Afghanistan', lat: '69.17233', lon: '34.52813'},
    { id:'Mar1960', city: 'Mariehamn', country: 'Aland Islands', lat: '19.93481', lon: '60.09726'},
    { id:'Tir1941', city: 'Tirana', country: 'Albania', lat: '19.81889', lon: '41.3275'},
