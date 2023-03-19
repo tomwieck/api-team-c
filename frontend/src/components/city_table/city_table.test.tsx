@@ -5,7 +5,7 @@ test("display 3 rows", () => {
   //   const citiesData: ICityProps[] = [
   //     {
   //       cityName: "London",
-  //       weatherIcons: [{ imgId: "windy" }, { imgId: "sunny" }],
+  //       weatherIcons: [{ iconId: "windy" }, { iconId: "sunny" }],
   //       forecasts: [
   //         {
   //           date_str: "Today", // 15th, 16th...
@@ -20,7 +20,7 @@ test("display 3 rows", () => {
   //     },
   //     {
   //       cityName: "Paris",
-  //       weatherIcons: [{ imgId: "windy" }, { imgId: "sunny" }],
+  //       weatherIcons: [{ iconId: "windy" }, { iconId: "sunny" }],
   //       forecasts: [
   //         {
   //           date_str: "Today", // 15th, 16th...
@@ -35,7 +35,7 @@ test("display 3 rows", () => {
   //     },
   //     {
   //       cityName: "Nwe York",
-  //       weatherIcons: [{ imgId: "windy" }, { imgId: "sunny" }],
+  //       weatherIcons: [{ iconId: "windy" }, { iconId: "sunny" }],
   //       forecasts: [
   //         {
   //           date_str: "Today", // 15th, 16th...
