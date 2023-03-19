@@ -3,24 +3,25 @@ import { Fade } from "react-bootstrap";
 
 import { CityRow } from "../city_row/city_row";
 import CityForecast from "../city_forecast/city_forecast";
+import { CitySearch } from "../city_search/city_search";
 
 import { cities } from "../../dummy/dummy_data";
 
 import { useFetchData } from "../../hooks/use_fetch_data";
-// import { IForecastCity } from "../../types/forecast_frontend.types";
 
 import { ApiDaily } from "../../types/forecast_backend.types";
 import { API_CITY_FORECAST_FOR_5_DAYS } from "../../config/config";
 import { IForecastCity } from "../../types/forecast_frontend.types";
 
+import { City } from "../../types/city.types";
+interface IIsOpen {
+  [key: number]: boolean;
+}
+
 const processData = (data: ApiDaily | undefined) => {
   console.log(data);
   return [];
 };
-
-interface IIsOpen {
-  [key: number]: boolean;
-}
 
 export const CityTable: React.FC = () => {
   const dummyDataLoad = (dummyData: IForecastCity[]) => {
@@ -52,6 +53,12 @@ export const CityTable: React.FC = () => {
     } else setIsFull(true);
   };
 
+  const [selected, setSelected] = useState<City>();
+
+  const handleOnSelect = (item: City) => {
+    setSelected(item);
+  };
+
   const [rowOpen, setRowOpen] = useState<IIsOpen>({
     0: false,
     1: false,
@@ -60,10 +67,14 @@ export const CityTable: React.FC = () => {
     4: false,
   });
 
-  // const cityId = "Lon-151";
-  const cityId = "Kab6934";
+  const [cityRows, setCityRows] = useState<IForecastCity[]>([]);
 
-  const url = `${API_CITY_FORECAST_FOR_5_DAYS}?id=${cityId}`;
+  // 5 cities max
+  const [isFull, setIsFull] = useState<boolean>(false);
+
+  // API call section
+  const url = `${API_CITY_FORECAST_FOR_5_DAYS}?id=${selected?.id}`;
+
   console.log("Getting", url);
 
   const { data, error, isFetching, status } = useFetchData<
@@ -71,15 +82,10 @@ export const CityTable: React.FC = () => {
   >(url);
 
   console.log(data);
-  // const res = processData(data);
-
-  const [cityRows, setCityRows] = useState<IForecastCity[]>([]);
-
-  const [isFull, setIsFull] = useState<boolean>(false);
-
-  if (!isFull) dummyDataLoad(cities);
+  // if (!isFull) dummyDataLoad(cities);
   return (
     <div className="city-table col">
+      <CitySearch handleOnSelect={handleOnSelect} />
       {cityRows.map((city, index) => (
         <React.Fragment key={"city_table_" + index}>
           {!rowOpen[index] && (
