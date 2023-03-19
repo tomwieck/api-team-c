@@ -9,7 +9,7 @@ export interface IForecastCity {
 }
 
 export interface IForecast {
-  date_str: string;
+  date_str: number | string | Date;
   icon_id: string;
   temp_day_min: string;
   temp_day_max: string;
