@@ -2,10 +2,15 @@ import { FiveDaysData, OneDaysData } from "../types/forecast_backend.types";
 import { IForecast, IForecastCity } from "../types/forecast_frontend.types";
 
 const getDate = (index: number) => {
-  var newDate = new Date();
+  if (index === 0) {
+    return 'Today';
+  }
+  let newDate = new Date();
   newDate.setDate(newDate.getDate() + index);
-  console.log(newDate);
-  return newDate.toLocaleDateString();
+  let stringDate = newDate.toLocaleDateString();
+  let dateParts = stringDate.split('/');
+
+  return dateParts[0] + '-' + dateParts[1];
 }
 
 const get_day_forecast_data = (dayForecast: OneDaysData, index: number): IForecast => {
