@@ -1,4 +1,5 @@
 export interface ApiDaily {
+  dt: number;
   weather: {
     icon: string;
     main: string;

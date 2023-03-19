@@ -37,10 +37,6 @@ Cache5Day.init(
 )
 
 export class Cache1Day extends Model
-// <
-// 	InferAttributes<Cache>,
-// 	InferCreationAttributes<Cache>
-// > 
 {
 	declare id: string;
 	declare json: string;

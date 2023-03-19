@@ -56,6 +56,7 @@ export const get5DaysForecast = async (id: string) => {
       const weather = day.weather[0];
 
       return {
+        date: day.dt,
         icon_id: weather.icon as string,
         icon_url: `http://openweather/icons/${weather.icon}.jpg`,
         weather_title: weather.main,
