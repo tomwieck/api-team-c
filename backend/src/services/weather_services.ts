@@ -30,7 +30,7 @@ export const getWeather = async (id: string) => {
 
     (cachedRecord && isCacheFresh)? console.log("Using cached record") : console.log("Using API");
 
-    let apiData = (cachedRecord && isCacheFresh) ?
+    const apiData = (cachedRecord && isCacheFresh) ?
       JSON.parse(cachedRecord.json)
       :
       await (async (city: City) => {
