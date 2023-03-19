@@ -3,43 +3,48 @@ import { Cache5Day } from "../models/cache5";
 
 import { ApiDaily, OneDaysData, FiveDaysData } from "../interfaces/interfaces";
 
-
 export const servGet5DaysForecast = async (id: string) => {
-
   const city = cities.find((city) => city.id === id);
 
   if (!city) {
     return null;
   } else {
-
     const cachedRecord = await Cache5Day.findOne({
-      where: { id: city.id }
-    })
+      where: { id: city.id },
+    });
 
-    const isCacheFresh = (cachedRecord && Date.now() - 1000 * 60 * 60 * 4 < cachedRecord.updatedAt.getTime());
+    const isCacheFresh =
+      cachedRecord &&
+      Date.now() - 1000 * 60 * 60 * 4 < cachedRecord.updatedAt.getTime();
 
-    (cachedRecord && isCacheFresh)? console.log("Using cached record") : console.log("Using API");
+    cachedRecord && isCacheFresh
+      ? console.log("Using cached record")
+      : console.log("Using API");
 
-    const apiData = (cachedRecord && isCacheFresh) ?
-      JSON.parse(cachedRecord.json)
-      :
-      await (async (city: City) => {
-        const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${city.lat}&lon=${city.lon}&exclude=hourly&appid=${process.env.WEATHER_API_KEY}&units=metric`);
-        return await response.json();
-      })(city);
+    const apiData =
+      cachedRecord && isCacheFresh
+        ? JSON.parse(cachedRecord.json)
+        : await (async (city: City) => {
+            const response = await fetch(
+              `https://api.openweathermap.org/data/3.0/onecall?lat=${city.lat}&lon=${city.lon}&exclude=hourly&appid=${process.env.WEATHER_API_KEY}&units=metric`
+            );
+            return await response.json();
+          })(city);
 
     if (cachedRecord) {
       if (!isCacheFresh) {
-        await Cache5Day.update({ id: city.id, json: JSON.stringify(apiData) }, { where: { id: city.id } })
+        await Cache5Day.update(
+          { id: city.id, json: JSON.stringify(apiData) },
+          { where: { id: city.id } }
+        );
       }
-    }
-    else {
+    } else {
       await Cache5Day.create({ id: city.id, json: JSON.stringify(apiData) });
     }
 
     const apiDaily: ApiDaily[] = apiData.daily;
-    
-    const days: OneDaysData[] = apiDaily.slice(5).map((day) => {
+
+    const days: OneDaysData[] = apiDaily.slice(0, 5).map((day) => {
       const weather = day.weather[0];
 
       return {
