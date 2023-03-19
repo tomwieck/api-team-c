@@ -36,9 +36,9 @@ function App() {
       </Navbar>
       <h3>Compare the weather for the next 5 days</h3>
       <Container>
-        <Row>
-          <CitySearch />
-        </Row>
+        {/* <Row> */}
+        <CitySearch />
+        {/* </Row> */}
         <Row>
           <CityTable />
         </Row>
