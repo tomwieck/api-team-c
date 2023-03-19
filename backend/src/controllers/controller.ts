@@ -27,13 +27,26 @@ export const saveCity = async (req: Request, res: Response) => {
 };
 
 export const deleteCity = async (req: Request, res: Response) => {
+  const city = req.body;
   try {
-    const data = await servSaveCity();
+    const data = await cityService.deleteCity(city);
     res.json(data).status(200);
   } catch (error) {
     res.status(400).json({ message: (error as Error).message });
   }
 };
+
+
+export const updateCity = async (req: Request, res: Response) => {
+  const city = req.body;
+  try {
+    const data = await cityService.updateCity(city);
+    res.json(data).status(200);
+  } catch (error) {
+    res.status(400).json({ message: (error as Error).message });
+  }
+};
+
 
 export const getFiveDayForecast = async (req: Request, res: Response) => {
   try {
@@ -77,5 +90,3 @@ export const getOneDayForecast = async (req: Request, res: Response) => {
   }
 
 };
-
-export default servGetCityList;
