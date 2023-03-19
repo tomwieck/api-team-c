@@ -11,7 +11,7 @@ console.log(`🌍 Running in ${environment} environment`);
 app.listen(PORT, () => {
   console.log(`🚂 Express started on port ${PORT}`);
   console.log(`http://localhost:${PORT}/cities -> to get all cities`);
-  console.log(`http://localhost:${PORT}/city/1 -> to get one day forecast for a city`); 
-  console.log(`http://localhost:${PORT}/city/5 -> to get five days a city`); 
+  console.log(`http://localhost:${PORT}/city/1 -> to get one day forecast for a city, given cityId`); 
+  console.log(`http://localhost:${PORT}/city/5 -> to get five forecast for a a city, given cityId`); 
 
 }); 
