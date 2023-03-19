@@ -15,6 +15,7 @@ export interface ICitySearchProps {
   citiesData: City[] | undefined;
   disabled: boolean;
   searchString: string;
+  clearError: () => void;
 }
 
 export const CitySearch: React.FC<ICitySearchProps> = ({
@@ -22,6 +23,7 @@ export const CitySearch: React.FC<ICitySearchProps> = ({
   citiesData,
   disabled,
   searchString,
+  clearError,
 }) => {
   return (
     <div
@@ -31,6 +33,8 @@ export const CitySearch: React.FC<ICitySearchProps> = ({
       <ReactSearchAutocomplete
         items={citiesData as City[]}
         onSelect={handleOnSelect}
+        onFocus={clearError}
+        onClear={clearError}
         autoFocus
         fuseOptions={{
           keys: ["city"],

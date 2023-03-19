@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Fade } from "react-bootstrap";
+import { Alert, Fade } from "react-bootstrap";
 
 import { CityRow } from "../city_row/city_row";
 import CityForecast from "../city_forecast/city_forecast";
@@ -10,10 +10,13 @@ import { get_city_data } from "../../helpers/get_city_data";
 import { IForecastCity } from "../../types/forecast_frontend.types";
 import { City } from "../../types/city.types";
 
+import { isError } from "../../utils/type_guards";
+
 import {
   API_CITY_FORECAST_FOR_5_DAYS,
   API_CITIES_URL,
 } from "../../config/config";
+
 interface IIsOpen {
   [key: number]: boolean;
 }
@@ -24,6 +27,7 @@ export const CityTable: React.FC = () => {
   const [cityRows, setCityRows] = useState<IForecastCity[]>([]);
   const [cityId, setCityId] = useState<string>();
   const [citiesData, setcitiesData] = useState<City[]>();
+  const [error, setError] = useState("");
   // 5 cities max
   const [isFull, setIsFull] = useState<boolean>(false);
   const [rowOpen, setRowOpen] = useState<IIsOpen>({
@@ -67,14 +71,19 @@ export const CityTable: React.FC = () => {
     }
   };
 
+  const clearError = () => {
+    setError("");
+  };
+
   const handleOnSelect = (item: City) => {
+    setError("");
     setCityId(item.id);
     setSearchString("");
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      const url = `${API_CITY_FORECAST_FOR_5_DAYS}?id=${cityId}`;
+      let url = `${API_CITY_FORECAST_FOR_5_DAYS}?id=${cityId}`;
 
       try {
         const response = await fetch(url);
@@ -83,9 +92,13 @@ export const CityTable: React.FC = () => {
           // TODO refactor
           const res = get_city_data(json);
           if (res) addRow(res);
+        } else {
+          throw new Error(`${response.status}`);
         }
       } catch (e: unknown) {
-        //   setError(e.message);
+        if (isError(e)) {
+          setError(e.message);
+        }
       }
     };
     if (cityId) {
@@ -114,11 +127,17 @@ export const CityTable: React.FC = () => {
   return (
     <div className="city-table col">
       <CitySearch
-        handleOnSelect={handleOnSelect}
         citiesData={citiesData}
         disabled={isFull}
         searchString={searchString}
-      />
+        handleOnSelect={handleOnSelect} 
+        clearError={clearError} />
+      {error && (
+        <Alert key="warning" variant="warning">
+          There are some problems with getting the forecast for that city,
+          please try another
+        </Alert>
+      )}
       {cityRows.map((city, index) => (
         <React.Fragment key={"city_table_" + index}>
           {!rowOpen[index] && (
