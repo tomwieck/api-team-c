@@ -4,11 +4,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 export interface IWeatherIconProp {
-  imgId: string;
+  iconId: string;
 }
 
-export const WeatherIcon: React.FC<IWeatherIconProp> = ({ imgId }) => {
-  const className = "city-row__weather-icon--" + imgId;
+export const WeatherIcon: React.FC<IWeatherIconProp> = ({ iconId }) => {
+  const className = "city-row__weather-icon--" + iconId;
   return (
     <>
       <p className={className} />

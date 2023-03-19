@@ -4,7 +4,7 @@ import { WeatherIcon } from "./weather_icon";
 import { IWeatherIconProp } from "./weather_icon";
 test("renders input placeholder text", () => {
   const weatherIconData: IWeatherIconProp = {
-    imgId: "sunny",
+    iconId: "sunny",
   };
   render(<WeatherIcon {...weatherIconData} />);
   // const placeholder = screen.getByText(/Counter/i);
