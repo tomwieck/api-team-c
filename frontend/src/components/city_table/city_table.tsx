@@ -73,13 +73,11 @@ export const CityTable: React.FC = () => {
   const [isFull, setIsFull] = useState<boolean>(false);
 
   // API call section
-  const url = `${API_CITY_FORECAST_FOR_5_DAYS}?id=${selected?.id}`;
+  const url = selected?.id ? `${API_CITY_FORECAST_FOR_5_DAYS}?id=${selected?.id}` : '';
 
   console.log("Getting", url);
 
-  const { data, error, isFetching, status } = useFetchData<
-    ApiDaily | undefined
-  >(url);
+  const { data, error, isFetching, status } = useFetchData<ApiDaily | undefined>(url);
 
   console.log(data);
   // if (!isFull) dummyDataLoad(cities);
