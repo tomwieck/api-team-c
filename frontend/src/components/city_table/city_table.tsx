@@ -3,14 +3,25 @@ import { Fade } from "react-bootstrap";
 
 import { CityRow } from "../city_row/city_row";
 import CityForecast from "../city_forecast/city_forecast";
+import { CitySearch } from "../city_search/city_search";
 
 import { cities } from "../../dummy/dummy_data";
 
+import { useFetchData } from "../../hooks/use_fetch_data";
+
+import { ApiDaily } from "../../types/forecast_backend.types";
+import { API_CITY_FORECAST_FOR_5_DAYS } from "../../config/config";
 import { IForecastCity } from "../../types/forecast_frontend.types";
 
+import { City } from "../../types/city.types";
 interface IIsOpen {
   [key: number]: boolean;
 }
+
+const processData = (data: ApiDaily | undefined) => {
+  console.log(data);
+  return [];
+};
 
 export const CityTable: React.FC = () => {
   const dummyDataLoad = (dummyData: IForecastCity[]) => {
@@ -42,6 +53,12 @@ export const CityTable: React.FC = () => {
     } else setIsFull(true);
   };
 
+  const [selected, setSelected] = useState<City>();
+
+  const handleOnSelect = (item: City) => {
+    setSelected(item);
+  };
+
   const [rowOpen, setRowOpen] = useState<IIsOpen>({
     0: false,
     1: false,
@@ -52,11 +69,21 @@ export const CityTable: React.FC = () => {
 
   const [cityRows, setCityRows] = useState<IForecastCity[]>([]);
 
+  // 5 cities max
   const [isFull, setIsFull] = useState<boolean>(false);
 
-  if (!isFull) dummyDataLoad(cities);
+  // API call section
+  const url = selected?.id ? `${API_CITY_FORECAST_FOR_5_DAYS}?id=${selected?.id}` : '';
+
+  console.log("Getting", url);
+
+  const { data, error, isFetching, status } = useFetchData<ApiDaily | undefined>(url);
+
+  console.log(data);
+  // if (!isFull) dummyDataLoad(cities);
   return (
     <div className="city-table col">
+      <CitySearch handleOnSelect={handleOnSelect} />
       {cityRows.map((city, index) => (
         <React.Fragment key={"city_table_" + index}>
           {!rowOpen[index] && (
