@@ -31,6 +31,7 @@ export const CityTable: React.FC = () => {
       return index !== idx;
     });
     setCityRows(updatedRows);
+    setCityId("");
   };
 
   const addRow = (apiData: IForecastCity) => {
