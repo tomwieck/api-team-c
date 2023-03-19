@@ -19,7 +19,7 @@ export const getCities = async (req: Request, res: Response) => {
 export const saveCity = async (req: Request, res: Response) => {
   const city = req.body;
   try {
-    const data = await saveCity(city);
+    const data = await cityService.saveCity(city);
     res.json(data).status(200);
   } catch (error) {
     res.status(400).json({ message: (error as Error).message });
