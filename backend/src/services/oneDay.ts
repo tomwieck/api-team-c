@@ -1,18 +1,18 @@
-import { cities, City } from "../database/database";
+import { City } from "../models/cities";
 import { Cache1Day } from "../models/cache1";
 
 import { ApiHourly, OneHoursData, HourlyDaysData} from "../interfaces/interfaces";
   
 export const servGet1DayForecast = async (id: string) => {
 
-    const city = cities.find((city) => city.id === id);
+    const city = await City.findOne( {where: {id}});
   
     if (!city) {
       return null;
     } else {
   
       const cachedRecord = await Cache1Day.findOne({
-        where: { id: city.id }
+        where: { id }
       })
   
       const isCacheFresh = (cachedRecord && Date.now() - 1000 * 60 * 15 < cachedRecord.updatedAt.getTime());

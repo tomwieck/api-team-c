@@ -4,7 +4,7 @@ import {
 	InferCreationAttributes,
 	DataTypes,
 } from "sequelize";
-import { cacheDb } from "../database/database";
+import { dbCache } from "../database/cache";
 
 export class Cache1Day extends Model
 {
@@ -14,7 +14,7 @@ export class Cache1Day extends Model
 } [];
 
 Cache1Day.init(
-	{
+	{ 
 		id: {
 			type: DataTypes.STRING,
 			allowNull: false,
@@ -27,7 +27,7 @@ Cache1Day.init(
 	},
 	{
 		modelName: "cache1",
-		sequelize: cacheDb,
+		sequelize: dbCache,
 	}
 );
 

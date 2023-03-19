@@ -4,18 +4,36 @@ import { Request, Response } from "express";
 // import { cities } from '../database/database';
 import { servGet5DaysForecast } from "../services/fiveDay";
 import { servGet1DayForecast } from "../services/oneDay";
-import { servGetCityList } from "../services/cities";
+import * as cityService from "../services/cities";
 
 
 export const getCities = async (req: Request, res: Response) => {
   try {
-    const data = await servGetCityList();
+    const data = await cityService.getCityList();
     res.json(data).status(200);
   } catch (error) {
     res.status(400).json({ message: (error as Error).message });
   }
 };
 
+export const saveCity = async (req: Request, res: Response) => {
+  const city = req.body;
+  try {
+    const data = await saveCity(city);
+    res.json(data).status(200);
+  } catch (error) {
+    res.status(400).json({ message: (error as Error).message });
+  }
+};
+
+export const deleteCity = async (req: Request, res: Response) => {
+  try {
+    const data = await servSaveCity();
+    res.json(data).status(200);
+  } catch (error) {
+    res.status(400).json({ message: (error as Error).message });
+  }
+};
 
 export const getFiveDayForecast = async (req: Request, res: Response) => {
   try {

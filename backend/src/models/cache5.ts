@@ -5,7 +5,7 @@ import {
 	DataTypes,
 } from "sequelize";
 
-import { cacheDb } from "../database/database";
+import { dbCache } from "../database/cache";
 
 export class Cache5Day extends Model
 // <
@@ -32,7 +32,7 @@ Cache5Day.init(
 	},
 	{
 		modelName: "cache5",
-		sequelize: cacheDb,
+		sequelize: dbCache,
 	}
 );
 
