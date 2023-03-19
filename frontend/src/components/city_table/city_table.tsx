@@ -57,9 +57,9 @@ export const CityTable: React.FC = () => {
   const addRow = (apiData: IForecastCity) => {
     if (
       cityRows.length < 5 &&
-      cityRows.filter((cr) => cr.cityName === apiData.cityName).length === 0
+      cityRows.filter(cr => cr.cityName === apiData.cityName).length === 0
     ) {
-      setCityRows((cityRows) => [...cityRows, apiData]);
+      setCityRows(cityRows => [...cityRows, apiData]);
       setIsFull(false);
     } else if (cityRows.length === 5) {
       setIsFull(true);
