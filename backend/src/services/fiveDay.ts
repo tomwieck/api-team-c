@@ -1,8 +1,6 @@
 import { City } from "../models/cities";
 import { Cache5Day } from "../models/cache5";
-
 import { ApiDaily, OneDaysData, FiveDaysData } from "../interfaces/interfaces";
-
 
 export const servGet5DaysForecast = async (id: string) => {
 
@@ -76,6 +74,3 @@ export const servGet5DaysForecast = async (id: string) => {
     return data;
   }
 };
-
-
-FileReader.slice ('\n').map( array = string.split('\t'). city.name = array [0]  )
