@@ -22,10 +22,10 @@ interface IIsOpen {
 }
 
 export const CityTable: React.FC = () => {
-
   const [searchString, setSearchString] = useState("");
   const [cityRows, setCityRows] = useState<IForecastCity[]>([]);
   const [cityId, setCityId] = useState<string>();
+  const [country, setCountry] = useState<string>("");
   const [citiesData, setcitiesData] = useState<City[]>();
   const [error, setError] = useState("");
   // 5 cities max
@@ -78,6 +78,7 @@ export const CityTable: React.FC = () => {
   const handleOnSelect = (item: City) => {
     setError("");
     setCityId(item.id);
+    setCountry(item.country);
     setSearchString("");
   };
 
@@ -130,8 +131,9 @@ export const CityTable: React.FC = () => {
         citiesData={citiesData}
         disabled={isFull}
         searchString={searchString}
-        handleOnSelect={handleOnSelect} 
-        clearError={clearError} />
+        handleOnSelect={handleOnSelect}
+        clearError={clearError}
+      />
       {error && (
         <Alert key="warning" variant="warning">
           There are some problems with getting the forecast for that city,
@@ -145,6 +147,7 @@ export const CityTable: React.FC = () => {
               <CityRow
                 key={"city_row_" + index}
                 {...city}
+                country={country}
                 toggleRow={() => toggleRow(index)}
                 deleteRow={() => deleteRow(index)}
               />

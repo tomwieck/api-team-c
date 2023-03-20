@@ -11,6 +11,7 @@ import { IForecast } from "../../types/forecast_frontend.types";
 
 export interface ICityRowProps {
   cityName: string;
+  country: string;
   weatherIcons: IWeatherIconProp[];
   forecasts: IForecast[];
   toggleRow(): void;
@@ -19,15 +20,18 @@ export interface ICityRowProps {
 
 export const CityRow: React.FC<ICityRowProps> = ({
   cityName,
+  country,
   weatherIcons,
   toggleRow,
   deleteRow,
 }) => {
   return (
-    <div className="city-row" onClick={(e) => toggleRow()}>
+    <div className="city-row" onClick={e => toggleRow()}>
       <Col className="col-3">
         <h3 className="city-row__city-name">
           {cityName}
+          <br />
+          <span className="city-row__country">{country}</span>
         </h3>
       </Col>
       <Col className="col-8 city-row__weather">
