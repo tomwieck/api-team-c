@@ -24,9 +24,9 @@ const ForecastDayCard: React.FC<ForecastDayCardProps> = ({
         className={
           isActive ? "forecast-card forecast-card--active" : "forecast-card"
         }
-        onClick={(e) => toggleActive()}
+        onClick={e => toggleActive()}
       >
-        <Card.Body>
+        <Card.Body className="forecast-card__body">
           <p>{forecast.date_str.toString()}</p>
           <div className="forecast-card__content">
             <div className="forecast-card__icon-wrapper">
@@ -45,7 +45,7 @@ const ForecastDayCard: React.FC<ForecastDayCardProps> = ({
             )}
           </div>
         </Card.Body>
-        <Card.Footer>
+        <Card.Footer className="forecast-card__footer">
           <FontAwesomeIcon name="humidity" icon={faDroplet} />{" "}
           {forecast.humidity}% | <FontAwesomeIcon name="wind" icon={faWind} />{" "}
           {forecast.wind_speed}
