@@ -12,6 +12,4 @@ test("renders input placeholder text", () => {
     ],
   };
   render(<WeatherIconRow {...weatherIconRowData} />);
-  // const placeholder = screen.getByText(/Counter/i);
-  // expect(placeholder).toBeInTheDocument();
 });
