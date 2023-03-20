@@ -23,10 +23,10 @@ export interface ApiDaily {
 }
 
 export interface OneDaysData {
-  weather_title: String;
-  weather_description: String;
-  icon_id: String;
-  icon_url: String;
+  weather_title: string;
+  weather_description: string;
+  icon_id: string;
+  icon_url: string;
   sunrise_time: number;
   sunset_time: number;
   hours_daylight: number;
@@ -44,7 +44,8 @@ export interface OneDaysData {
 }
 
 export interface FiveDaysData {
-  cityName: String;
+  cityName: string;
+  cityCountry: string;
   date: Number;
   percentprec: number;
   total_rain: number;
@@ -54,7 +55,8 @@ export interface FiveDaysData {
 
 
 export interface HourlyDaysData {
-  cityName: String;
+  cityName: string;
+  cityCountry: string;
   date: Number;
   percentprec: number;
   total_rain: number;
@@ -88,10 +90,10 @@ export interface ApiHourly {
 
 export interface OneHoursData {
   time: number;
-  weather_title: String;
-  weather_description: String;
-  icon_id: String;
-  icon_url: String;
+  weather_title: string;
+  weather_description: string;
+  icon_id: string;
+  icon_url: string;
   sunrise_time: number;
   sunset_time: number;
   hours_daylight: number;
