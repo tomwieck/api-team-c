@@ -72,6 +72,7 @@ export const servGet5DaysForecast = async (id: string) => {
 
     const data: FiveDaysData = {
       cityName: city.city,
+      countryName: city.country,
       date: apiData.current.dt,
       daily: days,
       percentprec: apiData.current.pop, // Math.floor(100 - days.reduce((total, today) => total * (1 - today.percentprec / 100), 100)),
