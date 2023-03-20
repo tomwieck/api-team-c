@@ -20,7 +20,7 @@ function App() {
       </Navbar>
 
       <h1>
-        Compare the weather for the next 5 days
+        <span>Compare the weather for the next 5 days</span>
       </h1>
       <Container>
         <Row>
