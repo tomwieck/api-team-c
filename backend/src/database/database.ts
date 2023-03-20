@@ -7,5 +7,5 @@ import * as dotenv from "dotenv";
         `/${process.env.DB_NAME ??'MISSING_DB_NAME_CONFIG'}`
      : "sqlite::memory:";
 
-export const dbDatabase = new Sequelize(dbConnString);
+export const dbDatabase = new Sequelize(dbConnString, {logging: (process.env.DB_LOGGING?.toUpperCase() === 'ON') });
 

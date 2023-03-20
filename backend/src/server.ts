@@ -17,7 +17,8 @@ app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}/admin/city -> to get list of cities full data for admin`);
   console.log(`http://localhost:${PORT}/admin/city -> to put new city full data for admin`);
   console.log(`http://localhost:${PORT}/admin/city -> to delete city`);
-  console.log(`http://localhost:${PORT}/admin/city -> to update city data`);
+  console.log(`http://localhost:${PORT}/admin/city -> to update city data, given id`);
   console.log(`http://localhost:${PORT}/favourites -> to get program options`);
   console.log(`http://localhost:${PORT}/favourites -> to put program options`);
+  console.log('Logging =', process.env.DB_LOGGING);
 }); 

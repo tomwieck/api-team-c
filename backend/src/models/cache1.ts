@@ -4,6 +4,7 @@ import {
 	InferCreationAttributes,
 	DataTypes,
 } from "sequelize";
+
 import { dbCache } from "../database/cache";
 
 export class Cache1Day extends Model
@@ -34,5 +35,3 @@ Cache1Day.init(
 (async () => {
 	await Cache1Day.sync({force:true});
 }) ();
-
-

@@ -25,6 +25,10 @@ export const servGet1DayForecast = async (id: string) => {
         :
         await (async (city: City) => {
           const response = await fetch(`https://api.openweathermap.org/data/3.0/onecall?lat=${city.lat}&lon=${city.lon}&exclude=daily&appid=${process.env.WEATHER_API_KEY}&units=metric`);
+  
+          if (response.status !== 200 )
+            throw new Error(`Openweather returned status ${response.status}: ${response.statusText}`);
+
           return await response.json();
         })(city);
   

@@ -4,7 +4,6 @@ import { ApiDaily, OneDaysData, FiveDaysData } from "../interfaces/interfaces";
 
 export const servGet5DaysForecast = async (id: string) => {
 
-  console.log("looking up data for city id ", id)
   const city = (await City.findOne({ where: { id } }))?.dataValues;
 
   if (!city) {
@@ -27,20 +26,19 @@ export const servGet5DaysForecast = async (id: string) => {
         : await (async (city: City) => {
           const response = await fetch(
             `https://api.openweathermap.org/data/3.0/onecall?lat=${city.lat}&lon=${city.lon}&exclude=hourly&appid=${process.env.WEATHER_API_KEY}&units=metric`
-            // `https://api.openweathermap.org/data/3.0/onecall?lat=${city.lat}&lon=${city.lon}&exclude=hourly&appid=f2e2cc13f22b784f0570bb76378063c1&units=metric`
-
-
           );
+          if (response.status !== 200 )
+            throw new Error(`Openweather returned status ${response.status}: ${response.statusText}`);
+          
           return await response.json();
         })(city);
 
-    console.log("apiData = ", apiData, "Key = ", process.env);
     if (cachedRecord) {
       if (!isCacheFresh) {
-        await Cache5Day.update({ id: city.id, json: JSON.stringify(apiData) }, { where: { id } })
+        await Cache5Day.update({ id, json: JSON.stringify(apiData) }, { where: { id } })
       }
     } else {
-      await Cache5Day.create({ id: city.id, json: JSON.stringify(apiData) });
+      await Cache5Day.create({ id, json: JSON.stringify(apiData) });
     }
 
     const apiDaily: ApiDaily[] = apiData.daily;
