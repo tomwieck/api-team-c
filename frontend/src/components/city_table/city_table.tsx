@@ -83,7 +83,7 @@ export const CityTable: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      let url = `${API_CITY_FORECAST_FOR_5_DAYS}?id=${cityId}`;
+      const url = `${API_CITY_FORECAST_FOR_5_DAYS}?id=${cityId}`;
 
       try {
         const response = await fetch(url);
