@@ -5,9 +5,17 @@
 
 .forecast-card {
   width: 20%;
+  min-width: 120px;
 
   &--active {
     width: 30%;
+    min-width: 160px;
+  }
+
+  @media (max-width: 600px) {
+    &__body {
+      padding: 5px;
+    }
   }
 
   &__content {
@@ -27,6 +35,11 @@
     justify-content: center;
     margin-left: 10px;
   }
+  @media (max-width: 600px) {
+    &__temperatures {
+      margin-left: 0;
+    }
+  }
 
   &__max-temperature {
     font-weight: bold;
@@ -41,7 +54,32 @@
     align-items: center;
   }
 
-  .card-footer {
-    padding: 1rem .25rem;
+  @media (max-width: 600px) {
+    &__description {
+      margin-left: 10px;
+      padding-left: 10px;
+    }
+  }
+
+  &__footer {
+    padding: 10px 0;
+  }
+
+  @media (max-width: 600px) {
+    &__footer {
+      padding: 10px 0;
+    }
+  }
+
+  &__footer-humidity {
+    padding-right: 5p;
+  }
+
+  &__footer-humidity::after {
+    content: "|";
+  }
+
+  &__footer-wind {
+    padding-left: 5px;
   }
 }
