@@ -5,6 +5,7 @@
 }
 
 .city-row {
+  cursor: pointer;
   display: flex;
   border: 1px solid rgb(190, 190, 190);
   border-radius: .25rem;
@@ -28,8 +29,6 @@
 }
 
 .city-row__city-name {
-
-  cursor: pointer;
   color: #6a6a6a;
   transition: .25s;
   transform-origin: left center;
@@ -44,6 +43,10 @@
     @extend .city-row__city-name;
     text-align: left;
   }
+}
+
+.city-row__weather {
+  padding-bottom: 16px;
 }
 
 .city-row__weather-icon {

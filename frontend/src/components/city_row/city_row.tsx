@@ -1,10 +1,13 @@
 import React from "react";
 import { Row, Col, Button } from "react-bootstrap";
-import { WeatherIconRow } from "../weather_icon_row/weather_icon_row";
-import { IForecast } from "../../types/forecast_frontend.types";
-import { IWeatherIconProp } from "../weather_icon/weather_icon";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+
+import { WeatherIconRow } from "../weather_icon_row/weather_icon_row";
+import { IWeatherIconProp } from "../weather_icon/weather_icon";
+
+import { IForecast } from "../../types/forecast_frontend.types";
 
 export interface ICityRowProps {
   cityName: string;
@@ -21,18 +24,18 @@ export const CityRow: React.FC<ICityRowProps> = ({
   deleteRow,
 }) => {
   return (
-    <div className="city-row">
+    <div className="city-row" onClick={(e) => toggleRow()}>
       <Col className="col-3">
-        <h3 className="city-row__city-name" onClick={(e) => toggleRow()}>
+        <h3 className="city-row__city-name">
           {cityName}
         </h3>
       </Col>
-      <Col className="col-8">
+      <Col className="col-8 city-row__weather">
         <WeatherIconRow weatherIcons={weatherIcons} />
       </Col>
       <Col className="col-1">
         <Button className="city-row__delete-button" onClick={() => deleteRow()}>
-          <FontAwesomeIcon name="wind" icon={faTrash} />
+          <FontAwesomeIcon name="delete" icon={faTrash} />
         </Button>
       </Col>
     </div>
