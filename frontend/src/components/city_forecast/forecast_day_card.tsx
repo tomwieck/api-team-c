@@ -27,7 +27,7 @@ const ForecastDayCard: React.FC<ForecastDayCardProps> = ({
         onClick={(e) => toggleActive()}
       >
         <Card.Body>
-          <p>{forecast.date_str}</p>
+          <p>{forecast.date_str.toString()}</p>
           <div className="forecast-card__content">
             <div className="forecast-card__icon-wrapper">
               <i className={iconClassName}></i>
