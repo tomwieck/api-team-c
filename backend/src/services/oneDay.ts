@@ -66,6 +66,7 @@ export const servGet1DayForecast = async (id: string) => {
   
       const data: HourlyDaysData = {
         cityName: city.city,
+        countryName: city.country,
         date: apiData.current.dt,
         hourly: hours,
         percentprec: Math.floor(100 - hours.reduce((total, today) => total * (1 - today.percentprec / 100), 100)),
