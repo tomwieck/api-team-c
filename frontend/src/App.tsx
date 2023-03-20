@@ -92,7 +92,9 @@ function App() {
         </Container>
       </Navbar>
 
-      <h3>Compare the weather for the next 5 days</h3>
+      <h1>
+        <span>Compare the weather for the next 5 days</span>
+      </h1>
       <Container>
         <Row>
           <CityTable />
