@@ -334,7 +334,7 @@ describe("Test home API endpoint request", () => {
   });
   test("successfully returned an array of cities", async () => {    
     // Arrange
-    jest.spyOn(cityservice, "servGetCityList").mockResolvedValue(dummyCities);
+    jest.spyOn(cityservice, "getCityList").mockResolvedValue(dummyCities);
     const res = await request(app).get("/cities");
     // Assert
     expect(res.statusCode).toEqual(200);

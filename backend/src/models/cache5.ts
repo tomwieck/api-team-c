@@ -16,7 +16,7 @@ export class Cache5Day extends Model
 	declare id: string;
 	declare json: string;
 	declare public readonly updatedAt: Date;
-} [];
+};
 
 Cache5Day.init(
 	{

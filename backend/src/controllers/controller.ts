@@ -6,6 +6,7 @@ import { servGet5DaysForecast } from "../services/fiveDay";
 import { servGet1DayForecast } from "../services/oneDay";
 import * as cityService from "../services/cities";
 import * as settingsService from "../services/settings"
+import { City } from "../models/cities";
 
 
 export const getCities = async (req: Request, res: Response) => {
@@ -19,7 +20,9 @@ export const getCities = async (req: Request, res: Response) => {
 
 export const filterCities = async (req: Request, res: Response) => {
   try {
-    const data = await cityService.filterCityList(req.body);
+    const filter = req.query.filter as string;
+    console.log("filter by ", filter);
+    const data = await cityService.filterCityList(filter);
     res.json(data).status(200);
   } catch (error) {
     res.status(400).json({ message: (error as Error).message });
@@ -28,17 +31,16 @@ export const filterCities = async (req: Request, res: Response) => {
 
 export const getCityData = async (req: Request, res: Response) => {
   try {
-    const data = await cityService.getCityData();
+    const data : City[] = await cityService.getCityData();
     res.json(data).status(200);
   } catch (error) {
     res.status(400).json({ message: (error as Error).message });
   }
 };
 
-
-
 export const saveCity = async (req: Request, res: Response) => {
-  const city = req.body;
+  const city:City  = req.body;
+  console.log( "Saving ", req.body)
   try {
     const data = await cityService.saveCity(city);
     res.json(data).status(200);
@@ -59,9 +61,10 @@ export const deleteCity = async (req: Request, res: Response) => {
 
 
 export const updateCity = async (req: Request, res: Response) => {
+  const id = req.params.id;
   const city = req.body;
   try {
-    const data = await cityService.updateCity(city);
+    const data = await cityService.updateCity(id, city);
     res.json(data).status(200);
   } catch (error) {
     res.status(400).json({ message: (error as Error).message });

@@ -11,7 +11,7 @@ export class Cache1Day extends Model
 	declare id: string;
 	declare json: string;
 	declare public readonly updatedAt: Date;
-} [];
+};
 
 Cache1Day.init(
 	{ 

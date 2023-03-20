@@ -1,4 +1,5 @@
 import { Dialect, Sequelize } from "sequelize";
+import * as dotenv from "dotenv";
 
  const  dbConnString = (process.env.NODE_ENV === 'production') ?
         `${(process.env.DB_DIALECT as Dialect) ?? 'postgres'}:${process.env.DB_USERNAME ??'MISSING_DB_USERNAME_CONFIG'}`+

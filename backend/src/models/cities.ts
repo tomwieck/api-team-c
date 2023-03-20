@@ -8,16 +8,13 @@ import {
 import { dbDatabase } from "../database/database";
 
 export class City extends Model
-// <
-//     InferAttributes<City>, InferCreationAttributes<City>
-// >
 {
     declare id: string;
     declare city: string;
     declare country: string;
     declare lon: string;
     declare lat: string;
-} [];
+}[];
 
 City.init(
     {

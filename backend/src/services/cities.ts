@@ -1,15 +1,18 @@
 import { City } from "../models/cities";
-import * as sequelize from "sequelize";
 
 export const getCityList = async () =>
-    (await City.findAll(
-        {             attributes: [
-            'id', 'city', 'country', 
-            [sequelize.fn('concat', sequelize.col('city'), ' (', sequelize.col('country'), ')'), 'longName']
-        ]
-    }
+{
+    return (await City.findAll({
+        where: {
+        },
+        attributes: [ "id", "city", "country" ]
+    })).map(
+        ({dataValues:{city, country, id}}) => { 
+            return { city, country, id, longName: `${city} (${country})` };
+         }
+    )
 
-    ));
+}
 
 export const getCity = async (id: number) => {
     return await City.findOne({
@@ -18,21 +21,23 @@ export const getCity = async (id: number) => {
 };
 
 export const filterCityList = async (filter: string) => {
-    return (await City.findAll(
-        {
-            attributes: [
-                'id', 'city', 'country', 
-                [sequelize.fn('concat', sequelize.col('city'), ' (', sequelize.col('country'), ')'), 'longName']
-            ],
+    {
+        console.log(filter);
+        const lowercase = filter.toLowerCase();
+
+        return (await City.findAll({
             where: {
-                    longName: { [sequelize.Op.like]: `%${filter}%` }
             },
-
-        }
-    ));
-}
-
-
+            attributes: [ "id", "city", "country" ]
+        })).filter(({dataValues:{city, country}}) => 
+        `${city} (${country})`.toLowerCase().includes(lowercase)
+        ).map(
+            ({dataValues:{city, country, id}}) => { 
+                return { city, country, id, longName: `${city} (${country})` };
+             }
+        )
+    }
+};
 
 
 export const getCityData = async () =>
@@ -43,10 +48,10 @@ export const saveCity = async (city: City) => {
     let returnCity = await City.create<City>({ ...city });
 };
 
-export const updateCity = async (city: City) => {
+export const updateCity = async (id: string, city: City) => {
     return await City.update<City>(city, {
         where: {
-            id: city.id,
+            id
         },
     });
 };

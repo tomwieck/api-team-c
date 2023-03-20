@@ -4,11 +4,13 @@ import { ApiDaily, OneDaysData, FiveDaysData } from "../interfaces/interfaces";
 
 export const servGet5DaysForecast = async (id: string) => {
 
+  console.log("looking up data for city id ", id)
   const city = (await City.findOne({ where: { id } }))?.dataValues;
 
   if (!city) {
     return null;
   } else {
+
     const cachedRecord = await Cache5Day.findOne({
       where: { id }
     })
@@ -23,12 +25,13 @@ export const servGet5DaysForecast = async (id: string) => {
       cachedRecord && isCacheFresh
         ? JSON.parse(cachedRecord.json)
         : await (async (city: City) => {
-            const response = await fetch(
-              `https://api.openweathermap.org/data/3.0/onecall?lat=${city.lat}&lon=${city.lon}&exclude=hourly&appid=${process.env.WEATHER_API_KEY}&units=metric`
-            );
-            return await response.json();
-          })(city);
+          const response = await fetch(
+            `https://api.openweathermap.org/data/3.0/onecall?lat=${city.lat}&lon=${city.lon}&exclude=hourly&appid=${process.env.WEATHER_API_KEY}&units=metric`
+          );
+          return await response.json();
+        })(city);
 
+    console.log("apiData = ", apiData, "Key = ", process.env);
     if (cachedRecord) {
       if (!isCacheFresh) {
         await Cache5Day.update({ id: city.id, json: JSON.stringify(apiData) }, { where: { id } })
