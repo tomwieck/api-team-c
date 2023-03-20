@@ -2,7 +2,7 @@
 # Team C **Weather App**
 
 ## Description 🌞⛅🌦🌤☀
-Our application allows up to five cities to be selected at a time 
+Our application allows up to five cities to be selected at a time. 
 This allows a user to see the weather details for the next five days, and compare them across different locations 
 ## Tech stack
 * React 
@@ -48,7 +48,7 @@ cd frontend
 npm run test
 ```
 
-## Members 🙆‍♀️🙆‍♂️🧏‍♀️💁‍♀️
+## Members 🙍‍♂️🙎‍♀️👩‍💼🙆‍♀️👨‍💼
 -   Tom Wieck
 -   Julian Hirst
 -   Abdullah Sarwar
