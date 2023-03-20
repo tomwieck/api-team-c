@@ -12,7 +12,7 @@
     min-width: 160px;
   }
 
-  @media (max-width: 575.98px) {
+  @media (max-width: 600px) {
     &__body {
       padding: 5px;
     }
@@ -35,7 +35,7 @@
     justify-content: center;
     margin-left: 10px;
   }
-  @media (max-width: 575.98px) {
+  @media (max-width: 600px) {
     &__temperatures {
       margin-left: 0;
     }
@@ -54,16 +54,32 @@
     align-items: center;
   }
 
-  @media (max-width: 575.98px) {
+  @media (max-width: 600px) {
     &__description {
       margin-left: 10px;
       padding-left: 10px;
     }
   }
 
-  @media (max-width: 575.98px) {
+  &__footer {
+    padding: 10px 0;
+  }
+
+  @media (max-width: 600px) {
     &__footer {
       padding: 10px 0;
     }
+  }
+
+  &__footer-humidity {
+    padding-right: 5p;
+  }
+
+  &__footer-humidity::after {
+    content: "|";
+  }
+
+  &__footer-wind {
+    padding-left: 5px;
   }
 }
