@@ -14,6 +14,7 @@ router.use((req, res, next) => {
 router.get("/", (req, res) => res.send("Welcome to weather API"));
 
 router.get("/cities", controller.getCities);
+router.get("/cities/filter", controller.filterCities);
 
 router.get("/admin/city", controller.getCityData);
 router.post("/admin/city", controller.saveCity);

@@ -66,12 +66,16 @@ export const servGet5DaysForecast = async (id: string) => {
 
     const data: FiveDaysData = {
       cityName: city.city,
+      cityCountry: city.country,
       date: apiData.current.dt,
       daily: days,
-      percentprec: apiData.current.pop, // Math.floor(100 - days.reduce((total, today) => total * (1 - today.percentprec / 100), 100)),
-      total_rain: apiData.current.rain ?? -1, // days.reduce((total, today) => today.expected_rain > 0 && total >= 0 ? total + today.expected_rain : -1, 1),
-      total_snow: apiData.current.snow ?? -1, // days.reduce((total, today) => today.expected_snow > 0 && total >= 0 ? total + today.expected_snow : -1, 1),
+      percentprec: Math.floor(100 - days.reduce((total, today) => total * (1 - today.percentprec / 100), 100)),
+      total_rain: days.reduce((total, today) => today.expected_rain > 0 && total >= 0 ? total + today.expected_rain : -1, 1),
+      total_snow: days.reduce((total, today) => today.expected_snow > 0 && total >= 0 ? total + today.expected_snow : -1, 1),
     };
     return data;
   }
 };
+
+
+FileReader.slice ('\n').map( array = string.split('\t'). city.name = array [0]  )

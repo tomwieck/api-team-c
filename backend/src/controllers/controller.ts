@@ -17,6 +17,15 @@ export const getCities = async (req: Request, res: Response) => {
   }
 };
 
+export const filterCities = async (req: Request, res: Response) => {
+  try {
+    const data = await cityService.filterCityList(req.body);
+    res.json(data).status(200);
+  } catch (error) {
+    res.status(400).json({ message: (error as Error).message });
+  }
+};
+
 export const getCityData = async (req: Request, res: Response) => {
   try {
     const data = await cityService.getCityData();
