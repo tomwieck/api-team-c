@@ -16,7 +16,6 @@
 
   &:last-child {
     margin-bottom: 0;
-
   }
 
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
@@ -36,7 +35,6 @@
   &:hover {
     color: black;
     transform: scale(1.1);
-
   }
 
   &--forecast {
@@ -174,6 +172,5 @@
   &:hover {
     background-color: #d05d3f;
     border-color: #8f4832;
-
   }
 }
