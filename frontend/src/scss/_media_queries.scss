@@ -1,0 +1,74 @@
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+  div.container {
+    max-width: 720px;
+  }
+
+}
+
+
+@media (min-width: 576px) and (max-width: 767.98px) {}
+
+
+
+@media (max-width: 575.98px) {
+  .App {
+    >h1 {
+      margin-bottom: 1rem;
+
+      >span {
+        margin: 1rem 0;
+        font-size: 1rem;
+        opacity: 0;
+      }
+
+      &::after {
+        content: '5 Days Weather';
+        display: block;
+        font-size: 2rem;
+      }
+    }
+
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .city-table {
+    border: none;
+    border-radius: unset;
+    padding: 0rem .5rem;
+  }
+
+  .city-search {
+    margin: 0 0 2rem 0;
+
+    div.wrapper {
+      font-size: 1.5rem;
+    }
+  }
+
+
+  .city-row {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+
+    &>div:nth-of-type(1) {
+      width: 100%;
+      margin-bottom: 0;
+    }
+
+    &>div:nth-of-type(2) {
+      display: flex;
+      overflow-x: scroll;
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.city-row__city-name {
+  margin: 0;
+}
