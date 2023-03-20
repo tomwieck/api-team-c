@@ -21,7 +21,7 @@ export const CityRow: React.FC<ICityRowProps> = ({
   deleteRow,
 }) => {
   return (
-    <Row className="city-row">
+    <div className="city-row">
       <Col className="col-3">
         <h3 className="city-row__city-name" onClick={(e) => toggleRow()}>
           {cityName}
@@ -35,6 +35,6 @@ export const CityRow: React.FC<ICityRowProps> = ({
           <FontAwesomeIcon name="wind" icon={faTrash} />
         </Button>
       </Col>
-    </Row>
+    </div>
   );
 };

@@ -8,7 +8,10 @@ import { get_city_data } from "../../helpers/get_city_data";
 
 import { IForecastCity } from "../../types/forecast_frontend.types";
 import { ApiDaily } from "../../types/forecast_backend.types";
-import { API_CITY_FORECAST_FOR_5_DAYS } from "../../config/config";
+import {
+  API_CITY_FORECAST_FOR_5_DAYS,
+  API_CITIES_URL,
+} from "../../config/config";
 import { City } from "../../types/city.types";
 interface IIsOpen {
   [key: number]: boolean;
@@ -18,11 +21,13 @@ interface ICityTableProps {
 }
 
 export const CityTable: React.FC = () => {
+  //
   const toggleRow = (index: number) => {
     const newRowOpen = { ...rowOpen };
     newRowOpen[index] = !newRowOpen[index];
     setRowOpen(newRowOpen);
   };
+
   const deleteRow = (index: number) => {
     const updatedRowOpen = { ...rowOpen };
     updatedRowOpen[index] = false;
@@ -31,6 +36,9 @@ export const CityTable: React.FC = () => {
       return index !== idx;
     });
     setCityRows(updatedRows);
+    setCityId("");
+    if (cityRows.length < 5) setIsFull(false);
+    setSearchString("");
   };
 
   const addRow = (apiData: IForecastCity) => {
@@ -40,13 +48,18 @@ export const CityTable: React.FC = () => {
     ) {
       setCityRows((cityRows) => [...cityRows, apiData]);
       setIsFull(false);
-    } else setIsFull(true);
+    } else if (cityRows.length === 5) {
+      setIsFull(true);
+      setSearchString("Limit 5 Cities Reached");
+    }
   };
 
   const [selected, setSelected] = useState<City>();
+  const [searchString, setSearchString] = useState("");
 
   const handleOnSelect = (item: City) => {
     setCityId(item.id);
+    setSearchString("");
   };
 
   const [rowOpen, setRowOpen] = useState<IIsOpen>({
@@ -58,8 +71,8 @@ export const CityTable: React.FC = () => {
   });
 
   const [cityRows, setCityRows] = useState<IForecastCity[]>([]);
-  // const [cityForecasts, setCityForecasts] = useState<IForecastCity[]>([]);
   const [cityId, setCityId] = useState<string>();
+  const [citiesData, setcitiesData] = useState<City[]>();
 
   // 5 cities max
   const [isFull, setIsFull] = useState<boolean>(false);
@@ -92,9 +105,40 @@ export const CityTable: React.FC = () => {
     }
   }, [cityId]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const url = `${API_CITIES_URL}`;
+
+      try {
+        const response = await fetch(url);
+        console.log("response", response);
+        // setIsFetching(false);
+        if (response.status === 200) {
+          const json = await response.json();
+          // TODO refactor
+          // const res = get_city_data(json);
+          if (json) setcitiesData(json);
+        }
+        // setStatus(response.status);
+      } catch (e: unknown) {
+        // setIsFetching(false);
+        // if (isError(e)) {
+        //   setError(e.message);
+      }
+    };
+    // if (cityId) {
+    fetchData();
+    // }
+  }, []);
+
   return (
     <div className="city-table col">
-      <CitySearch handleOnSelect={handleOnSelect} />
+      <CitySearch
+        handleOnSelect={handleOnSelect}
+        citiesData={citiesData}
+        disabled={isFull}
+        searchString={searchString}
+      />
       {cityRows.map((city, index) => (
         <React.Fragment key={"city_table_" + index}>
           {!rowOpen[index] && (
