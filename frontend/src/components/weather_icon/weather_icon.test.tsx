@@ -1,5 +1,4 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, } from "@testing-library/react";
 import { WeatherIcon } from "./weather_icon";
 import { IWeatherIconProp } from "./weather_icon";
 test("renders input placeholder text", () => {
