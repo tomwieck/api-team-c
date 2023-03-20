@@ -5,6 +5,7 @@ import { Request, Response } from "express";
 import { servGet5DaysForecast } from "../services/fiveDay";
 import { servGet1DayForecast } from "../services/oneDay";
 import * as cityService from "../services/cities";
+import * as settingsService from "../services/settings"
 
 
 export const getCities = async (req: Request, res: Response) => {
@@ -15,6 +16,17 @@ export const getCities = async (req: Request, res: Response) => {
     res.status(400).json({ message: (error as Error).message });
   }
 };
+
+export const getCityData = async (req: Request, res: Response) => {
+  try {
+    const data = await cityService.getCityData();
+    res.json(data).status(200);
+  } catch (error) {
+    res.status(400).json({ message: (error as Error).message });
+  }
+};
+
+
 
 export const saveCity = async (req: Request, res: Response) => {
   const city = req.body;
@@ -90,3 +102,24 @@ export const getOneDayForecast = async (req: Request, res: Response) => {
   }
 
 };
+
+export const getFavourites = async (req: Request, res: Response) => {
+  try {
+    const data = await settingsService.getSettings();
+    res.json(data).status(200);
+  } catch (error) {
+    res.status(400).json({ message: (error as Error).message });
+  }
+};
+
+export const putFavourites = async (req: Request, res: Response) => {
+    const favourites = req.body;
+    try {
+      const data = await settingsService.saveSettings(favourites);
+      res.json(data).status(200);
+    } catch (error) {
+      res.status(400).json({ message: (error as Error).message });
+    }
+  };
+  
+
