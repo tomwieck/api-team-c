@@ -1,5 +1,7 @@
 .city-search {
   margin: 2rem 0;
+  position: relative;
+  z-index: 10;
 
   .wrapper {
     transition: box-shadow .25s ease-in-out;
