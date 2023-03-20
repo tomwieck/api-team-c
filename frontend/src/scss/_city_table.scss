@@ -5,6 +5,7 @@
 }
 
 .city-row {
+  cursor: pointer;
   display: flex;
   border: 1px solid rgb(190, 190, 190);
   border-radius: .25rem;
@@ -15,7 +16,6 @@
 
   &:last-child {
     margin-bottom: 0;
-
   }
 
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
@@ -28,8 +28,6 @@
 }
 
 .city-row__city-name {
-
-  cursor: pointer;
   color: #6a6a6a;
   transition: .25s;
   transform-origin: left center;
@@ -37,13 +35,16 @@
   &:hover {
     color: black;
     transform: scale(1.1);
-
   }
 
   &--forecast {
     @extend .city-row__city-name;
     text-align: left;
   }
+}
+
+.city-row__weather {
+  padding-bottom: 1rem;
 }
 
 .city-row__weather-icon {
@@ -171,6 +172,5 @@
   &:hover {
     background-color: #d05d3f;
     border-color: #8f4832;
-
   }
 }

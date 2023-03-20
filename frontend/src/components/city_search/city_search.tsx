@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { Form, InputGroup, Row } from "react-bootstrap";
-
-import { Counter } from "../counter/counter";
 
 import { City } from "../../types/city.types";
+
 // https://github.com/sickdyd/react-search-autocomplete#readme @licence MIT
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 
