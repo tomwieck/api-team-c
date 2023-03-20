@@ -7,7 +7,7 @@ import {
 
 import { dbDatabase } from "../database/database";
 
-export class Setting extends Model
+export class Settings extends Model
 // <
 //     InferAttributes<Favourite>, InferCreationAttributes<Favourite>
 // >
@@ -15,7 +15,7 @@ export class Setting extends Model
     declare settings: string;
 } [];
 
-Setting.init(
+Settings.init(
     {
         settings: {
             type: DataTypes.TEXT,
@@ -31,5 +31,5 @@ Setting.init(
 );
 
 (async () => {
-    await Setting.sync({ alter: true });
+    await Settings.sync({ alter: true });
 })();
