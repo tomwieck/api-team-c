@@ -1,332 +1,395 @@
-// import request from "supertest";
-// import { app } from "../app";
-// import * as weatherService from "../services/favourites"; 
 
+import request from "supertest";
+import { app } from "../app";
+import * as cityservice from "../services/cities"; 
+import * as fiveDayService from "../services/fiveDay";
+import * as oneDayService from "../services/oneDay";
 
-// afterEach(() => {
-//   jest.resetAllMocks();
-// });
-
-// jest.mock("../services/weather_services");
-
-
-// const dummyCities = [
-//   {
-//     id: "Kab6934",
-//     city: "Kabul",
-//     country: "Afghanistanpooooo",
-//     longName: "Kabul (Afghanistan)",
-//   },
-//   {
-//     id: "Mar1960",
-//     city: "Mariehamn",
-//     country: "Aland Islands",
-//     longName: "Mariehamn (Aland Islands)",
-//   },
-// ];
-
-// const dummy1DayForeCast ={
-//   "lat": 69.1723,
-//   "lon": 34.5281,
-//   "timezone": "Europe/Moscow",
-//   "timezone_offset": 10800,
-//   "current": {
-//     "dt": 1679096490,
-//     "sunrise": 1679111547,
-//     "sunset": 1679154467,
-//     "temp": -14.74,
-//     "feels_like": -21.74,
-//     "pressure": 1025,
-//     "humidity": 94,
-//     "dew_point": -15.41,
-//     "uvi": 0,
-//     "clouds": 54,
-//     "visibility": 10000,
-//     "wind_speed": 4.19,
-//     "wind_deg": 236,
-//     "wind_gust": 4.54,
-//     "weather": [
-//       {
-//         "id": 803,
-//         "main": "Clouds",
-//         "description": "broken clouds",
-//         "icon": "04n"
-//       }
-//     ]
-//   },
-//   "hourly": [
-//     {
-//       "dt": 1679094000,
-//       "temp": -14.73,
-//       "feels_like": -21.73,
-//       "pressure": 1025,
-//       "humidity": 95,
-//       "dew_point": -15.29,
-//       "uvi": 0,
-//       "clouds": 56,
-//       "visibility": 10000,
-//       "wind_speed": 4.36,
-//       "wind_deg": 238,
-//       "wind_gust": 4.81,
-//       "weather": [
-//         {
-//           "id": 803,
-//           "main": "Clouds",
-//           "description": "broken clouds",
-//           "icon": "04n"
-//         }
-//       ],
-//       "pop": 0.13
-//     }]
-// }
-
-// const dummy5dayForecast={
-//   "cityName": "Kabul",
-//   "date": 1679096503,
-//   "daily": [
-//     {
-//       "icon_id": "13d",
-//       "icon_url": "http://openweather/icons/13d.jpg",
-//       "weather_title": "Snow",
-//       "weather_description": "light snow",
-//       "expected_rain": -1,
-//       "expected_snow": 0.73,
-//       "uv_index": 0.57,
-//       "wind_direction": 160,
-//       "wind_speed": 11.6,
-//       "temp_day_noon": -7.7,
-//       "temp_day_min": -14.92,
-//       "temp_day_max": -3.2,
-//       "percentprec": 98,
-//       "cloud_cover": 10000,
-//       "sunrise_time": 1679111547,
-//       "sunset_time": 1679154467,
-//       "hours_daylight": 42920,
-//       "humidity": 74
-//     },
-//     {
-//       "icon_id": "13d",
-//       "icon_url": "http://openweather/icons/13d.jpg",
-//       "weather_title": "Snow",
-//       "weather_description": "snow",
-//       "expected_rain": -1,
-//       "expected_snow": 4.89,
-//       "uv_index": 0.54,
-//       "wind_direction": 2,
-//       "wind_speed": 12.32,
-//       "temp_day_noon": -0.21,
-//       "temp_day_min": -7.66,
-//       "temp_day_max": 0.03,
-//       "percentprec": 100,
-//       "cloud_cover": 10000,
-//       "sunrise_time": 1679197679,
-//       "sunset_time": 1679241098,
-//       "hours_daylight": 43419,
-//       "humidity": 87
-//     },
-//     {
-//       "icon_id": "13d",
-//       "icon_url": "http://openweather/icons/13d.jpg",
-//       "weather_title": "Snow",
-//       "weather_description": "light snow",
-//       "expected_rain": -1,
-//       "expected_snow": 2.53,
-//       "uv_index": 0.37,
-//       "wind_direction": 14,
-//       "wind_speed": 10.92,
-//       "temp_day_noon": -4.14,
-//       "temp_day_min": -6.98,
-//       "temp_day_max": -1.39,
-//       "percentprec": 99,
-//       "cloud_cover": 10000,
-//       "sunrise_time": 1679283811,
-//       "sunset_time": 1679327729,
-//       "hours_daylight": 43918,
-//       "humidity": 90
-//     },
-//     {
-//       "icon_id": "13d",
-//       "icon_url": "http://openweather/icons/13d.jpg",
-//       "weather_title": "Snow",
-//       "weather_description": "light snow",
-//       "expected_rain": -1,
-//       "expected_snow": 0.55,
-//       "uv_index": 0.62,
-//       "wind_direction": 352,
-//       "wind_speed": 5.66,
-//       "temp_day_noon": -6.86,
-//       "temp_day_min": -10.25,
-//       "temp_day_max": -3.12,
-//       "percentprec": 88,
-//       "cloud_cover": 9900,
-//       "sunrise_time": 1679369943,
-//       "sunset_time": 1679414360,
-//       "hours_daylight": 44417,
-//       "humidity": 89
-//     },
-//     {
-//       "icon_id": "13d",
-//       "icon_url": "http://openweather/icons/13d.jpg",
-//       "weather_title": "Snow",
-//       "weather_description": "snow",
-//       "expected_rain": -1,
-//       "expected_snow": 4.56,
-//       "uv_index": 0.39,
-//       "wind_direction": 323,
-//       "wind_speed": 11.19,
-//       "temp_day_noon": -7.79,
-//       "temp_day_min": -11.65,
-//       "temp_day_max": -5.16,
-//       "percentprec": 96,
-//       "cloud_cover": 10000,
-//       "sunrise_time": 1679456075,
-//       "sunset_time": 1679500991,
-//       "hours_daylight": 44916,
-//       "humidity": 62
-//     },
-//     {
-//       "icon_id": "13d",
-//       "icon_url": "http://openweather/icons/13d.jpg",
-//       "weather_title": "Snow",
-//       "weather_description": "snow",
-//       "expected_rain": -1,
-//       "expected_snow": 1.31,
-//       "uv_index": 1,
-//       "wind_direction": 239,
-//       "wind_speed": 15,
-//       "temp_day_noon": -9.41,
-//       "temp_day_min": -12.21,
-//       "temp_day_max": -7.16,
-//       "percentprec": 53,
-//       "cloud_cover": 9700,
-//       "sunrise_time": 1679542206,
-//       "sunset_time": 1679587622,
-//       "hours_daylight": 45416,
-//       "humidity": 90
-//     },
-//     {
-//       "icon_id": "13d",
-//       "icon_url": "http://openweather/icons/13d.jpg",
-//       "weather_title": "Snow",
-//       "weather_description": "light snow",
-//       "expected_rain": -1,
-//       "expected_snow": 1.97,
-//       "uv_index": 1,
-//       "wind_direction": 311,
-//       "wind_speed": 8.75,
-//       "temp_day_noon": -6.51,
-//       "temp_day_min": -12.66,
-//       "temp_day_max": -6.19,
-//       "percentprec": 42,
-//       "cloud_cover": 9200,
-//       "sunrise_time": 1679628338,
-//       "sunset_time": 1679674253,
-//       "hours_daylight": 45915,
-//       "humidity": 69
-//     },
-//     {
-//       "icon_id": "13d",
-//       "icon_url": "http://openweather/icons/13d.jpg",
-//       "weather_title": "Snow",
-//       "weather_description": "snow",
-//       "expected_rain": -1,
-//       "expected_snow": 10.45,
-//       "uv_index": 1,
-//       "wind_direction": 308,
-//       "wind_speed": 5.14,
-//       "temp_day_noon": -7.6,
-//       "temp_day_min": -10,
-//       "temp_day_max": -7.3,
-//       "percentprec": 74,
-//       "cloud_cover": 10000,
-//       "sunrise_time": 1679714469,
-//       "sunset_time": 1679760884,
-//       "hours_daylight": 46415,
-//       "humidity": 80
-//     }
-//   ],
-//   "percentprec": 100,
-//   "total_rain": -1,
-//   "total_snow": 27.99
-// }
-
-// describe("Test home API endpoint request", () => {
-//   test("GET should return correct message", async () => {
-//     const res = await request(app).get("/");
-
-//     expect(res.statusCode).toEqual(200);
-//   });
-
-//   test("successfully returned an array of cities", async () => {    
-//     (
-//       getCityList as jest.Mock
-//     ).mockResolvedValue(dummyCities);
-//     // Act
-//     const res = await request(app).get("/cities");
-//     // Assert
-//     expect(res.statusCode).toEqual(200);
-//     expect(res.body).toEqual(dummyCities);
-//   });
-
-//   test("successfully returned one day forecast", async () => {    
-//     (
-//       weatherService.get1DayForcast as jest.Mock
-//     ).mockResolvedValue(dummy1DayForeCast);
-//     // Act
-//     const res = await request(app).get("/city/1?id=Kab6934");
-//     // Assert
-//     expect(res.statusCode).toEqual(200);
-//     expect(res.body).toEqual(dummy1DayForeCast);
-//   });
-
-//   test("successfully returned five day forecast", async () => {    
-//     (
-//       weatherService.get5DaysForecast as jest.Mock
-//     ).mockResolvedValue(dummy5dayForecast);
-//     // Act
-//     const res = await request(app).get("/city/5?id=Kab6934");
-//     // Assert
-//     expect(res.statusCode).toEqual(200);
-//     expect(res.body).toEqual(dummy5dayForecast);
-//   });
-
-//   test("successfully returned 404 when no id supplied for one day forecast", async () => {    
-     
-//     const res = await request(app).get("/city/1");
-//     // Assert
-//     expect(res.statusCode).toEqual(404);
+afterEach(() => {
+  jest.resetAllMocks();
+});
+const dummyCities = [
+  {
+    id: "Kab6934",
+    city: "Kabul",
+    country: "Afghanistanpooooo",
+    longName: "Kabul (Afghanistan)",
+  },
+  {
+    id: "Mar1960",
+    city: "Mariehamn",
+    country: "Aland Islands",
+    longName: "Mariehamn (Aland Islands)",
+  },
+];
+const dummy1DayForeCast={
+  "cityName": "Izmir",
+  "date": 1679260091,
+  "daily": [
+      {
+          "date": 1679306400,
+          "icon_id": "01d",
+          "icon_url": "http://openweather/icons/01d.jpg",
+          "weather_title": "Clear",
+          "weather_description": "clear sky",
+          "expected_rain": -1,
+          "expected_snow": -1,
+          "uv_index": 5.58,
+          "wind_direction": 38,
+          "wind_speed": 3.8,
+          "temp_day_noon": 16.12,
+          "temp_day_min": 6.1,
+          "temp_day_max": 18.24,
+          "percentprec": 0,
+          "cloud_cover": 100,
+          "sunrise_time": 1679285748,
+          "sunset_time": 1679329339,
+          "hours_daylight": 43591,
+          "humidity": 51
+      },
+      {
+          "date": 1679392800,
+          "icon_id": "04d",
+          "icon_url": "http://openweather/icons/04d.jpg",
+          "weather_title": "Clouds",
+          "weather_description": "overcast clouds",
+          "expected_rain": -1,
+          "expected_snow": -1,
+          "uv_index": 5.08,
+          "wind_direction": 296,
+          "wind_speed": 2.32,
+          "temp_day_noon": 19.05,
+          "temp_day_min": 8.96,
+          "temp_day_max": 20.33,
+          "percentprec": 0,
+          "cloud_cover": 10000,
+          "sunrise_time": 1679372055,
+          "sunset_time": 1679415795,
+          "hours_daylight": 43740,
+          "humidity": 36
+      },
+      {
+          "date": 1679479200,
+          "icon_id": "10d",
+          "icon_url": "http://openweather/icons/10d.jpg",
+          "weather_title": "Rain",
+          "weather_description": "moderate rain",
+          "expected_rain": 5.75,
+          "expected_snow": -1,
+          "uv_index": 2.78,
+          "wind_direction": 228,
+          "wind_speed": 4.05,
+          "temp_day_noon": 15.62,
+          "temp_day_min": 10.69,
+          "temp_day_max": 16.48,
+          "percentprec": 100,
+          "cloud_cover": 10000,
+          "sunrise_time": 1679458361,
+          "sunset_time": 1679502252,
+          "hours_daylight": 43891,
+          "humidity": 62
+      },
+      {
+          "date": 1679565600,
+          "icon_id": "02d",
+          "icon_url": "http://openweather/icons/02d.jpg",
+          "weather_title": "Clouds",
+          "weather_description": "few clouds",
+          "expected_rain": -1,
+          "expected_snow": -1,
+          "uv_index": 5.63,
+          "wind_direction": 27,
+          "wind_speed": 3.91,
+          "temp_day_noon": 16.61,
+          "temp_day_min": 8.86,
+          "temp_day_max": 17.86,
+          "percentprec": 36,
+          "cloud_cover": 1200,
+          "sunrise_time": 1679544667,
+          "sunset_time": 1679588708,
+          "hours_daylight": 44041,
+          "humidity": 53
+      },
+      {
+          "date": 1679652000,
+          "icon_id": "01d",
+          "icon_url": "http://openweather/icons/01d.jpg",
+          "weather_title": "Clear",
+          "weather_description": "clear sky",
+          "expected_rain": -1,
+          "expected_snow": -1,
+          "uv_index": 5.83,
+          "wind_direction": 332,
+          "wind_speed": 2.85,
+          "temp_day_noon": 18.63,
+          "temp_day_min": 8.3,
+          "temp_day_max": 19.85,
+          "percentprec": 0,
+          "cloud_cover": 200,
+          "sunrise_time": 1679630973,
+          "sunset_time": 1679675164,
+          "hours_daylight": 44191,
+          "humidity": 43
+      },
+      {
+          "date": 1679738400,
+          "icon_id": "04d",
+          "icon_url": "http://openweather/icons/04d.jpg",
+          "weather_title": "Clouds",
+          "weather_description": "broken clouds",
+          "expected_rain": -1,
+          "expected_snow": -1,
+          "uv_index": 6,
+          "wind_direction": 295,
+          "wind_speed": 2.84,
+          "temp_day_noon": 19.49,
+          "temp_day_min": 10.54,
+          "temp_day_max": 21.15,
+          "percentprec": 0,
+          "cloud_cover": 6200,
+          "sunrise_time": 1679717279,
+          "sunset_time": 1679761620,
+          "hours_daylight": 44341,
+          "humidity": 40
+      }
+  ],
+  "total_rain": -1,
+  "total_snow": -1
+};
+const dummy5dayForecast=
+{
+  "cityName": "Kabul",
+  "date": 1679215023,
+  "daily": [
+    {
+      "icon_id": "13d",
+      "icon_url": "http://openweather/icons/13d.jpg",
+      "weather_title": "Snow",
+      "weather_description": "light snow",
+      "expected_rain": -1,
+      "expected_snow": 4.09,
+      "uv_index": 0.61,
+      "wind_direction": 336,
+      "wind_speed": 16.57,
+      "temp_day_noon": -0.71,
+      "temp_day_min": -8.1,
+      "temp_day_max": -0.57,
+      "percentprec": 100,
+      "cloud_cover": 10000,
+      "sunrise_time": 1679197679,
+      "sunset_time": 1679241098,
+      "hours_daylight": 43419,
+      "humidity": 84
+    },
+    {
+      "icon_id": "13d",
+      "icon_url": "http://openweather/icons/13d.jpg",
+      "weather_title": "Snow",
+      "weather_description": "light snow",
+      "expected_rain": -1,
+      "expected_snow": 3.04,
+      "uv_index": 0.35,
+      "wind_direction": 342,
+      "wind_speed": 12.62,
+      "temp_day_noon": -4.75,
+      "temp_day_min": -7.2,
+      "temp_day_max": -1.29,
+      "percentprec": 96,
+      "cloud_cover": 10000,
+      "sunrise_time": 1679283811,
+      "sunset_time": 1679327729,
+      "hours_daylight": 43918,
+      "humidity": 93
+    },
+    {
+      "icon_id": "13d",
+      "icon_url": "http://openweather/icons/13d.jpg",
+      "weather_title": "Snow",
+      "weather_description": "snow",
+      "expected_rain": -1,
+      "expected_snow": 1.9,
+      "uv_index": 0.64,
+      "wind_direction": 354,
+      "wind_speed": 11.15,
+      "temp_day_noon": -4.93,
+      "temp_day_min": -9.62,
+      "temp_day_max": -3.46,
+      "percentprec": 100,
+      "cloud_cover": 10000,
+      "sunrise_time": 1679369943,
+      "sunset_time": 1679414360,
+      "hours_daylight": 44417,
+      "humidity": 83
+    },
+    {
+      "icon_id": "13d",
+      "icon_url": "http://openweather/icons/13d.jpg",
+      "weather_title": "Snow",
+      "weather_description": "light snow",
+      "expected_rain": -1,
+      "expected_snow": 0.57,
+      "uv_index": 0.42,
+      "wind_direction": 273,
+      "wind_speed": 11.7,
+      "temp_day_noon": -9.02,
+      "temp_day_min": -12.24,
+      "temp_day_max": -5.99,
+      "percentprec": 50,
+      "cloud_cover": 8100,
+      "sunrise_time": 1679456075,
+      "sunset_time": 1679500991,
+      "hours_daylight": 44916,
+      "humidity": 80
+    },
+    {
+      "icon_id": "13d",
+      "icon_url": "http://openweather/icons/13d.jpg",
+      "weather_title": "Snow",
+      "weather_description": "snow",
+      "expected_rain": -1,
+      "expected_snow": 3.5,
+      "uv_index": 0.65,
+      "wind_direction": 269,
+      "wind_speed": 11.16,
+      "temp_day_noon": -11.32,
+      "temp_day_min": -12.12,
+      "temp_day_max": -9.14,
+      "percentprec": 91,
+      "cloud_cover": 9200,
+      "sunrise_time": 1679542206,
+      "sunset_time": 1679587622,
+      "hours_daylight": 45416,
+      "humidity": 89
+    },
+    {
+      "icon_id": "13d",
+      "icon_url": "http://openweather/icons/13d.jpg",
+      "weather_title": "Snow",
+      "weather_description": "snow",
+      "expected_rain": -1,
+      "expected_snow": 5.38,
+      "uv_index": 1,
+      "wind_direction": 294,
+      "wind_speed": 8.82,
+      "temp_day_noon": -7.82,
+      "temp_day_min": -14.44,
+      "temp_day_max": -6.07,
+      "percentprec": 62,
+      "cloud_cover": 9600,
+      "sunrise_time": 1679628338,
+      "sunset_time": 1679674253,
+      "hours_daylight": 45915,
+      "humidity": 72
+    },
+    {
+      "icon_id": "13d",
+      "icon_url": "http://openweather/icons/13d.jpg",
+      "weather_title": "Snow",
+      "weather_description": "snow",
+      "expected_rain": -1,
+      "expected_snow": 2.05,
+      "uv_index": 1,
+      "wind_direction": 267,
+      "wind_speed": 6.37,
+      "temp_day_noon": -10.47,
+      "temp_day_min": -15.44,
+      "temp_day_max": -9.42,
+      "percentprec": 52,
+      "cloud_cover": 3000,
+      "sunrise_time": 1679714469,
+      "sunset_time": 1679760884,
+      "hours_daylight": 46415,
+      "humidity": 79
+    },
+    {
+      "icon_id": "04d",
+      "icon_url": "http://openweather/icons/04d.jpg",
+      "weather_title": "Clouds",
+      "weather_description": "overcast clouds",
+      "expected_rain": -1,
+      "expected_snow": -1,
+      "uv_index": 1,
+      "wind_direction": 216,
+      "wind_speed": 3.69,
+      "temp_day_noon": -10.24,
+      "temp_day_min": -16.89,
+      "temp_day_max": -9.27,
+      "percentprec": 0,
+      "cloud_cover": 9900,
+      "sunrise_time": 1679800599,
+      "sunset_time": 1679847515,
+      "hours_daylight": 46916,
+      "humidity": 69
+    }
+  ],
+  "percentprec": 100,
+  "total_rain": -1,
+  "total_snow": -1
+};
+describe("Test home API endpoint request", () => {
+  test("GET should return correct message", async () => {
+      
+    const res = await request(app).get("/");
+    expect(res.statusCode).toEqual(200);
+  });
+  test("successfully returned an array of cities", async () => {    
+    // Arrange
+    jest.spyOn(cityservice, "servGetCityList").mockResolvedValue(dummyCities);
+    const res = await request(app).get("/cities");
+    // Assert
+    expect(res.statusCode).toEqual(200);
+    expect(res.body).toEqual(dummyCities);
+  });
+ 
+  test("successfully returned one day forecast", async () => {    
+    const addMock = jest.spyOn(oneDayService, "servGet1DayForecast");  
+    (
+      oneDayService.servGet1DayForecast as jest.Mock
+    ).mockReturnValue(dummy1DayForeCast);
+    // Act
+    const res = await request(app).get("/city/1?id=Kab6934");
+    // Assert
+    expect(res.statusCode).toEqual(200);
+    expect(res.body).toEqual(dummy1DayForeCast);
+  });
+  test("successfully returned five day forecast", async () => {  
+    const addMock = jest.spyOn(fiveDayService, "servGet5DaysForecast");    
+    (
+      fiveDayService.servGet5DaysForecast as jest.Mock
+    ).mockReturnValue(dummy5dayForecast);
+    // Act
+    const res = await request(app).get("/city/5?id=Kab6934");
+    // Assert
+    expect(res.statusCode).toEqual(200);
+    expect(res.body).toEqual(dummy5dayForecast);
+  });
+  test("successfully returned 404 when an invalid id supplied for one day forecast", async () => {    
+    const addMock = jest.spyOn(oneDayService, "servGet1DayForecast");   
+    (
+      oneDayService.servGet1DayForecast as jest.Mock
+    ).mockReturnValue(null);
+    // Act
+    const res = await request(app).get("/city/1?id=xxxx");
+    // Assert
+    expect(res.statusCode).toEqual(404);
     
-//   });
-//   test("successfully returned 404 when an invalid id supplied for one day forecast", async () => {    
-//     (
-//       weatherService.get1DayForcast as jest.Mock
-//     ).mockResolvedValue(null);
-//     // Act
-//     const res = await request(app).get("/city/1?id=xxxx");
-//     // Assert
-//     expect(res.statusCode).toEqual(404);
-    
-//   });
+  });
   
-//   test("successfully returned 404 when no id supplied for five day forecast", async () => {    
-     
-//     const res = await request(app).get("/city/5");
-//     // Assert
-//     expect(res.statusCode).toEqual(404);
+  test("successfully returned 404 when no id supplied for five day forecast", async () => {    
+    const addMock = jest.spyOn(fiveDayService, "servGet5DaysForecast");  
+    const res = await request(app).get("/city/5");
+    // Assert
+    expect(res.statusCode).toEqual(404);
     
-//   });
-
-//   test("successfully returned 404 when an invalid id supplied for one day forecast", async () => {    
-//     (
-//       weatherService.get5DaysForecast as jest.Mock
-//     ).mockResolvedValue(null);
-//     // Act
-//     const res = await request(app).get("/city/5?id=xxxx");
-//     // Assert
-//     expect(res.statusCode).toEqual(404);
+  });
+  test("successfully returned 404 when an invalid id supplied for one day forecast", async () => {    
+    (
+      fiveDayService.servGet5DaysForecast as jest.Mock
+    ).mockReturnValue(null);
+    // Act
+    const res = await request(app).get("/city/5?id=xxxx");
+    // Assert
+    expect(res.statusCode).toEqual(404);
     
-//   });
-
-// });
-
-
+  });
+});

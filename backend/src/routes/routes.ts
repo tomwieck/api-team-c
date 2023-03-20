@@ -11,7 +11,7 @@ router.use((req, res, next) => {
   next();
 });
 
-router.get("/", (req, res) => res.send("Welcome to weather API"));
+router.get("/", (req, res) => res.send({message:"Welcome to weather API"}));
 
 router.get("/cities", controller.getCities);
 
