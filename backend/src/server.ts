@@ -3,8 +3,7 @@ import { app } from "./app";
 import "./database/database"
 
 const environment = process.env.NODE_ENV?.trim() || "dev"; //window adds extra space
-console.log(environment);
-dotenv.config({ path: `.env.${environment}` });
+dotenv.config({ path: `./.env.${environment}` });
 console.log("API KEY=",process.env.WEATHER_API_KEY)
 const PORT = process.env.PORT || 5000;
 

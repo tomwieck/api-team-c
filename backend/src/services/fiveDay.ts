@@ -27,6 +27,9 @@ export const servGet5DaysForecast = async (id: string) => {
         : await (async (city: City) => {
           const response = await fetch(
             `https://api.openweathermap.org/data/3.0/onecall?lat=${city.lat}&lon=${city.lon}&exclude=hourly&appid=${process.env.WEATHER_API_KEY}&units=metric`
+            // `https://api.openweathermap.org/data/3.0/onecall?lat=${city.lat}&lon=${city.lon}&exclude=hourly&appid=f2e2cc13f22b784f0570bb76378063c1&units=metric`
+
+
           );
           return await response.json();
         })(city);
