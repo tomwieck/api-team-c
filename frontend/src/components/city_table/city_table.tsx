@@ -4,24 +4,36 @@ import { Fade } from "react-bootstrap";
 import { CityRow } from "../city_row/city_row";
 import CityForecast from "../city_forecast/city_forecast";
 import { CitySearch } from "../city_search/city_search";
+
 import { get_city_data } from "../../helpers/get_city_data";
 
 import { IForecastCity } from "../../types/forecast_frontend.types";
-import { ApiDaily } from "../../types/forecast_backend.types";
+import { City } from "../../types/city.types";
+
 import {
   API_CITY_FORECAST_FOR_5_DAYS,
   API_CITIES_URL,
 } from "../../config/config";
-import { City } from "../../types/city.types";
 interface IIsOpen {
   [key: number]: boolean;
 }
-interface ICityTableProps {
-  cityForecasts: IForecastCity[];
-}
 
 export const CityTable: React.FC = () => {
-  //
+
+  const [searchString, setSearchString] = useState("");
+  const [cityRows, setCityRows] = useState<IForecastCity[]>([]);
+  const [cityId, setCityId] = useState<string>();
+  const [citiesData, setcitiesData] = useState<City[]>();
+  // 5 cities max
+  const [isFull, setIsFull] = useState<boolean>(false);
+  const [rowOpen, setRowOpen] = useState<IIsOpen>({
+    0: false,
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+  });
+
   const toggleRow = (index: number) => {
     const newRowOpen = { ...rowOpen };
     newRowOpen[index] = !newRowOpen[index];
@@ -37,6 +49,7 @@ export const CityTable: React.FC = () => {
     });
     setCityRows(updatedRows);
     setCityId("");
+    // To do, state isnt updated instantly so requires a fix
     if (cityRows.length < 5) setIsFull(false);
     setSearchString("");
   };
@@ -54,30 +67,10 @@ export const CityTable: React.FC = () => {
     }
   };
 
-  const [selected, setSelected] = useState<City>();
-  const [searchString, setSearchString] = useState("");
-
   const handleOnSelect = (item: City) => {
     setCityId(item.id);
     setSearchString("");
   };
-
-  const [rowOpen, setRowOpen] = useState<IIsOpen>({
-    0: false,
-    1: false,
-    2: false,
-    3: false,
-    4: false,
-  });
-
-  const [cityRows, setCityRows] = useState<IForecastCity[]>([]);
-  const [cityId, setCityId] = useState<string>();
-  const [citiesData, setcitiesData] = useState<City[]>();
-
-  // 5 cities max
-  const [isFull, setIsFull] = useState<boolean>(false);
-
-  // if (!isFull) dummyDataLoad(cities);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -85,18 +78,13 @@ export const CityTable: React.FC = () => {
 
       try {
         const response = await fetch(url);
-        // console.log("response", response);
-        // setIsFetching(false);
         if (response.status === 200) {
           const json = await response.json();
           // TODO refactor
           const res = get_city_data(json);
           if (res) addRow(res);
         }
-        // setStatus(response.status);
       } catch (e: unknown) {
-        // setIsFetching(false);
-        // if (isError(e)) {
         //   setError(e.message);
       }
     };
@@ -111,24 +99,16 @@ export const CityTable: React.FC = () => {
 
       try {
         const response = await fetch(url);
-        console.log("response", response);
-        // setIsFetching(false);
         if (response.status === 200) {
           const json = await response.json();
           // TODO refactor
-          // const res = get_city_data(json);
           if (json) setcitiesData(json);
         }
-        // setStatus(response.status);
       } catch (e: unknown) {
-        // setIsFetching(false);
-        // if (isError(e)) {
         //   setError(e.message);
       }
     };
-    // if (cityId) {
     fetchData();
-    // }
   }, []);
 
   return (

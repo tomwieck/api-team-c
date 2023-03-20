@@ -17,7 +17,6 @@ const get_day_forecast_data = (dayForecast: OneDaysData, index: number): IForeca
   console.log(index)
   return {
     date_str: getDate(index),
-
     icon_id: dayForecast.icon_id,
     temp_day_min: `${Math.floor(dayForecast.temp_day_min)}°`,
     temp_day_max: `${Math.floor(dayForecast.temp_day_max)}°`,

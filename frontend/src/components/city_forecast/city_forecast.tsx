@@ -1,7 +1,8 @@
-import ForecastDayCard from "./forecast_day_card";
 import { useState } from "react";
-
 import { Row, Col } from "react-bootstrap";
+
+import ForecastDayCard from "./forecast_day_card";
+
 import { IForecast } from "../../types/forecast_frontend.types";
 
 interface ICityForecastProps {
