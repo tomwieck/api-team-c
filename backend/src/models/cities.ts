@@ -53,9 +53,9 @@ City.init(
     await City.sync({ alter: true });
 
     if (await City.count() === 0) {
-        
-        console.log("City model empty, loading base cities... ");
-        
+
+        console.log("City model empty, loading base city data... ");
+
         const baseCityData = fs.readFileSync(process.env.BASE_CITY_DATA ?? "data/basecities.tsv", { encoding: 'utf8', flag: "r" })
             .split('\r\n')
             .map((row) => {
@@ -63,11 +63,9 @@ City.init(
                 return { city: item[0], lat: item[1], lon: item[2], country: item[3], id: item[4] };
             });
 
-        console.log(`... ${baseCityData.length} cities loaded. Inserting into cities table...`);
-        
-        baseCityData.forEach(
-            (city) => City.create(city)
-        )
+        console.log(`... data for ${baseCityData.length} cities loaded. Inserting into cities table...`);
+
+        await Promise.all(baseCityData.map((city) => City.create<City>(city)));
 
         console.log("... city table initialised");
     }

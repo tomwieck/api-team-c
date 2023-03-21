@@ -1,18 +1,11 @@
 import {
 	Model,
-	InferAttributes,
-	InferCreationAttributes,
 	DataTypes,
 } from "sequelize";
 
 import { dbCache } from "../database/cache";
 
-export class Cache5Day extends Model
-// <
-// 	InferAttributes<Cache>,
-// 	InferCreationAttributes<Cache>
-// > 
-{
+export class Cache5Day extends Model {
 	declare id: string;
 	declare json: string;
 	declare public readonly updatedAt: Date;
@@ -37,5 +30,5 @@ Cache5Day.init(
 );
 
 (async () => {
-	await Cache5Day.sync({force:true});
-}) ();
+	await Cache5Day.sync({ force: true });
+})();

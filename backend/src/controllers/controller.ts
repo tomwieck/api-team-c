@@ -31,30 +31,39 @@ export const filterCities = async (req: Request, res: Response) => {
 
 export const getCityData = async (req: Request, res: Response) => {
   try {
-    const data : City[] = await cityService.getCityData();
+    const data: City[] = await cityService.getCityData();
     res.json(data).status(200);
   } catch (error) {
-    res.status(400).json({ message: (error as Error).message });
+    res.status(400).json({ name: (error as Error).name, message: (error as Error).message });
   }
 };
 
-export const saveCity = async (req: Request, res: Response) => {
-  const city:City  = req.body;
-  console.log( "Saving ", req.body)
+export const addNewCity = async (req: Request, res: Response) => {
+  const city: City = req.body;
   try {
-    const data = await cityService.saveCity(city);
-    res.json(data).status(200);
+    if (city) {
+      await cityService.saveCity(city);
+      res.json("City updated.").status(200);
+    } else {
+      res.json("Error: POST /admin/city requires full city data { id, city, country, lat, lon } is JSON format as body of request.").status(400);
+    }
   } catch (error) {
     res.status(400).json({ message: (error as Error).message });
   }
 };
 
 export const deleteCity = async (req: Request, res: Response) => {
-  const city = req.body;
+  const city = req.query.id;
   try {
-    const data = await cityService.deleteCity(city);
-    res.json(data).status(200);
-  } catch (error) {
+    if (city) {
+      const data = await cityService.deleteCity(city.toString());
+      res.json(data).status(200);
+    }
+    else {
+      res.json("Error: /admin/city DELETE requires 'id' of city to be deleted.").status(200);
+    }
+  }
+  catch (error) {
     res.status(400).json({ message: (error as Error).message });
   }
 };
@@ -64,8 +73,12 @@ export const updateCity = async (req: Request, res: Response) => {
   const id = req.params.id;
   const city = req.body;
   try {
+    if( city && id ) {
     const data = await cityService.updateCity(id, city);
     res.json(data).status(200);
+    } else {
+      res.json("Error: /admin/city PUT requires 'id' of city to be updated and full city data { id, city, country, lat, lon } is JSON format as body of request.").status(400);
+    }
   } catch (error) {
     res.status(400).json({ message: (error as Error).message });
   }
@@ -115,23 +128,33 @@ export const getOneDayForecast = async (req: Request, res: Response) => {
 
 };
 
-export const getFavourites = async (req: Request, res: Response) => {
+export const getSettings = async (req: Request, res: Response) => {
   try {
-    const data = await settingsService.getSettings();
-    res.json(data).status(200);
+    const username = req.query.username;
+    if (username) {
+      const data = await settingsService.getSettings(username.toString());
+      res.json(data).status(200);
+    } else {
+      res.status(400).json({ message: "Get settings - username required" });
+    }
   } catch (error) {
     res.status(400).json({ message: (error as Error).message });
   }
 };
 
-export const putFavourites = async (req: Request, res: Response) => {
-    const favourites = req.body;
-    try {
-      const data = await settingsService.saveSettings(favourites);
-      res.json(data).status(200);
-    } catch (error) {
-      res.status(400).json({ message: (error as Error).message });
+export const saveSettings = async (req: Request, res: Response) => {
+  const settings = req.query;
+  try {
+    if (settings && settings.username) {
+      await settingsService.saveSettings(settings);
+      res.json().status(200);
     }
-  };
-  
+    else {
+      res.status(400).json({ message: "Save settings - username required" });
+    }
+  } catch (error) {
+    res.status(400).json({ message: (error as Error).message });
+  }
+};
+
 

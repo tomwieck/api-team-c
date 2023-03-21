@@ -11,18 +11,18 @@ router.use((req, res, next) => {
   next();
 });
 
-router.get("/", (req, res) => res.send({message:"Welcome to weather API"}));
+router.get("/", (req, res) => res.send({ message: "Welcome to weather API" }));
 
 router.get("/cities/filter/", controller.filterCities);
 router.get("/cities", controller.getCities);
 
 router.get("/admin/city", controller.getCityData);
-router.post("/admin/city", controller.saveCity);
+router.post("/admin/city", controller.addNewCity);
 router.delete("/admin/city", controller.deleteCity);
 router.put("/admin/city", controller.updateCity);
 
 router.get("/city/1", controller.getOneDayForecast);
 router.get("/city/5/", controller.getFiveDayForecast);
 
-router.get('/favourites', controller.getFavourites);
-router.put('/favourites', controller.putFavourites);
+router.get('/favourites', controller.getSettings);
+router.post('/favourites', controller.saveSettings);

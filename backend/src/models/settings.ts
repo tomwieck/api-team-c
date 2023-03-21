@@ -12,19 +12,25 @@ export class Settings extends Model
 //     InferAttributes<Favourite>, InferCreationAttributes<Favourite>
 // >
 {
+    declare username: string;
     declare settings: string;
 } [];
 
 Settings.init(
     {
-        settings: {
-            type: DataTypes.TEXT,
+        username: {
+            type: DataTypes.STRING,
             allowNull: true,
             primaryKey: true
         },
+        settings: {
+            type: DataTypes.TEXT,
+            allowNull: true,
+            primaryKey: false
+        },
     },
     {
-        modelName: "favourite",
+        modelName: "setting",
         sequelize: dbDatabase,
         timestamps: false
     }

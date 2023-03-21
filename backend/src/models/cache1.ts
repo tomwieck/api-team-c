@@ -7,15 +7,14 @@ import {
 
 import { dbCache } from "../database/cache";
 
-export class Cache1Day extends Model
-{
+export class Cache1Day extends Model {
 	declare id: string;
 	declare json: string;
 	declare public readonly updatedAt: Date;
 };
 
 Cache1Day.init(
-	{ 
+	{
 		id: {
 			type: DataTypes.STRING,
 			allowNull: false,
@@ -33,5 +32,5 @@ Cache1Day.init(
 );
 
 (async () => {
-	await Cache1Day.sync({force:true});
-}) ();
+	await Cache1Day.sync({ force: true });
+})();

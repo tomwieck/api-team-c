@@ -1,15 +1,14 @@
 import { City } from "../models/cities";
 
-export const getCityList = async () =>
-{
+export const getCityList = async () => {
     return (await City.findAll({
         where: {
         },
-        attributes: [ "id", "city", "country" ]
+        attributes: ["id", "city", "country"]
     })).map(
-        ({dataValues:{city, country, id}}) => { 
+        ({ dataValues: { city, country, id } }) => {
             return { city, country, id, longName: `${city} (${country})` };
-         }
+        }
     )
 
 }
@@ -25,17 +24,13 @@ export const filterCityList = async (filter: string) => {
         console.log(filter);
         const lowercase = filter.toLowerCase();
 
-        return (await City.findAll({
-            where: {
-            },
-            attributes: [ "id", "city", "country" ]
-        })).filter(({dataValues:{city, country}}) => 
-        `${city} (${country})`.toLowerCase().includes(lowercase)
-        ).map(
-            ({dataValues:{city, country, id}}) => { 
-                return { city, country, id, longName: `${city} (${country})` };
-             }
-        )
+        return (await City.findAll({ where: {}, attributes: ["id", "city", "country"] }))
+            .filter(({ dataValues: { city, country } }) => `${city} (${country})`.toLowerCase().includes(lowercase)
+            ).map(
+                ({ dataValues: { city, country, id } }) => {
+                    return { city, country, id, longName: `${city} (${country})` };
+                }
+            )
     }
 };
 
@@ -44,7 +39,7 @@ export const getCityData = async () =>
     (await City.findAll());
 
 
-export const saveCity = async (city: City) => {
+export const saveCity = async (city:City) => {
     let returnCity = await City.create<City>({ ...city });
 };
 
@@ -56,7 +51,7 @@ export const updateCity = async (id: string, city: City) => {
     });
 };
 
-export const deleteCity = async (id: number) => {
+export const deleteCity = async (id: string) => {
     return City.destroy({
         where: {
             id
