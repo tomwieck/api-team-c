@@ -1,20 +1,37 @@
 .forecast-day-container {
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow: auto;
   margin-bottom: 10px;
 }
 
 .forecast-card {
   width: 20%;
-  min-width: 120px;
+
+  @media (max-width: 600px) {
+    min-width: 130px;
+  }
 
   &--active {
     width: 30%;
-    min-width: 160px;
+  }
+
+  @media (max-width: 600px) {
+    &--active {
+      min-width: 180px;
+    }
   }
 
   @media (max-width: 600px) {
     &__body {
       padding: 5px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    &__date {
+      margin-bottom: 0.1rem;
     }
   }
 
@@ -72,7 +89,7 @@
   }
 
   &__footer-humidity {
-    padding-right: 5p;
+    padding-right: 5px;
   }
 
   &__footer-humidity::after {
